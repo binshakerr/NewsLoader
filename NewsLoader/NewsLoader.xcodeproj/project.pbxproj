@@ -15,7 +15,6 @@
 		DCEE361F29FAF129001BBCD3 /* NewsLoaderUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEE361E29FAF129001BBCD3 /* NewsLoaderUITests.swift */; };
 		DCEE362129FAF129001BBCD3 /* NewsLoaderUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEE362029FAF129001BBCD3 /* NewsLoaderUITestsLaunchTests.swift */; };
 		DCEE363629FAF27F001BBCD3 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEE363429FAF27F001BBCD3 /* HomeViewController.swift */; };
-		DCEE363729FAF27F001BBCD3 /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DCEE363529FAF27F001BBCD3 /* HomeViewController.xib */; };
 		DCEE363929FAF38A001BBCD3 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEE363829FAF38A001BBCD3 /* AppCoordinator.swift */; };
 		DCEE363F29FAF428001BBCD3 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEE363C29FAF428001BBCD3 /* Coordinator.swift */; };
 		DCEE364029FAF428001BBCD3 /* NibInstantiatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEE363D29FAF428001BBCD3 /* NibInstantiatable.swift */; };
@@ -56,6 +55,9 @@
 		DCEE369C29FB01D1001BBCD3 /* NLError.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEE369B29FB01D1001BBCD3 /* NLError.swift */; };
 		DCEE369E29FB02B1001BBCD3 /* NewsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEE369D29FB02B1001BBCD3 /* NewsRepository.swift */; };
 		DCEE36A029FB02BD001BBCD3 /* NewsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEE369F29FB02BD001BBCD3 /* NewsService.swift */; };
+		DCEE36A329FB1C5A001BBCD3 /* NewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEE36A129FB1C5A001BBCD3 /* NewsCell.swift */; };
+		DCEE36A429FB1C5A001BBCD3 /* NewsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DCEE36A229FB1C5A001BBCD3 /* NewsCell.xib */; };
+		DCEE36A629FB2452001BBCD3 /* NewsCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEE36A529FB2452001BBCD3 /* NewsCellViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,7 +90,6 @@
 		DCEE361E29FAF129001BBCD3 /* NewsLoaderUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsLoaderUITests.swift; sourceTree = "<group>"; };
 		DCEE362029FAF129001BBCD3 /* NewsLoaderUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsLoaderUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		DCEE363429FAF27F001BBCD3 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		DCEE363529FAF27F001BBCD3 /* HomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
 		DCEE363829FAF38A001BBCD3 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		DCEE363C29FAF428001BBCD3 /* Coordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		DCEE363D29FAF428001BBCD3 /* NibInstantiatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NibInstantiatable.swift; sourceTree = "<group>"; };
@@ -120,6 +121,9 @@
 		DCEE369B29FB01D1001BBCD3 /* NLError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NLError.swift; sourceTree = "<group>"; };
 		DCEE369D29FB02B1001BBCD3 /* NewsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsRepository.swift; sourceTree = "<group>"; };
 		DCEE369F29FB02BD001BBCD3 /* NewsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsService.swift; sourceTree = "<group>"; };
+		DCEE36A129FB1C5A001BBCD3 /* NewsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCell.swift; sourceTree = "<group>"; };
+		DCEE36A229FB1C5A001BBCD3 /* NewsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewsCell.xib; sourceTree = "<group>"; };
+		DCEE36A529FB2452001BBCD3 /* NewsCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCellViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -257,7 +261,8 @@
 			isa = PBXGroup;
 			children = (
 				DCEE363429FAF27F001BBCD3 /* HomeViewController.swift */,
-				DCEE363529FAF27F001BBCD3 /* HomeViewController.xib */,
+				DCEE36A129FB1C5A001BBCD3 /* NewsCell.swift */,
+				DCEE36A229FB1C5A001BBCD3 /* NewsCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -266,6 +271,7 @@
 			isa = PBXGroup;
 			children = (
 				DCEE364D29FAF568001BBCD3 /* HomeViewModel.swift */,
+				DCEE36A529FB2452001BBCD3 /* NewsCellViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -506,9 +512,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DCEE36A429FB1C5A001BBCD3 /* NewsCell.xib in Resources */,
 				DCEE360A29FAF129001BBCD3 /* LaunchScreen.storyboard in Resources */,
 				DCEE360729FAF129001BBCD3 /* Assets.xcassets in Resources */,
-				DCEE363729FAF27F001BBCD3 /* HomeViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -536,6 +542,7 @@
 				DCEE369029FB00B2001BBCD3 /* NetworkLogger.swift in Sources */,
 				DCEE368029FAFD1F001BBCD3 /* MediaType.swift in Sources */,
 				DCEE367E29FAFCFF001BBCD3 /* Subtype.swift in Sources */,
+				DCEE36A629FB2452001BBCD3 /* NewsCellViewModel.swift in Sources */,
 				DCEE369A29FB019F001BBCD3 /* ErrorResponse.swift in Sources */,
 				DCEE364029FAF428001BBCD3 /* NibInstantiatable.swift in Sources */,
 				DCEE369229FB00B2001BBCD3 /* Parser.swift in Sources */,
@@ -557,6 +564,7 @@
 				DCEE369E29FB02B1001BBCD3 /* NewsRepository.swift in Sources */,
 				DCEE360029FAF128001BBCD3 /* SceneDelegate.swift in Sources */,
 				DCEE367A29FAFC84001BBCD3 /* MediaMetadata.swift in Sources */,
+				DCEE36A329FB1C5A001BBCD3 /* NewsCell.swift in Sources */,
 				DCEE367C29FAFCBF001BBCD3 /* Format.swift in Sources */,
 				DCEE368229FAFD76001BBCD3 /* Source.swift in Sources */,
 				DCEE364629FAF511001BBCD3 /* UIView+Extensions.swift in Sources */,

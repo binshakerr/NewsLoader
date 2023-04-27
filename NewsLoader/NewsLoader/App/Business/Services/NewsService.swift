@@ -22,7 +22,7 @@ extension NewsService: EndPoint {
     var path: String {
         switch self {
         case .mostPopular(let period):
-            return "/mostpopular/v2/viewed/\(period)"
+            return "/mostpopular/v2/viewed/\(period).json"
         }
     }
     
