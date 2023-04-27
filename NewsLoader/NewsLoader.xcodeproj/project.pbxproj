@@ -35,6 +35,15 @@
 		DCEE366A29FAF740001BBCD3 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = DCEE366929FAF740001BBCD3 /* RxRelay */; };
 		DCEE366C29FAF740001BBCD3 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = DCEE366B29FAF740001BBCD3 /* RxSwift */; };
 		DCEE366E29FAF740001BBCD3 /* RxTest in Frameworks */ = {isa = PBXBuildFile; productRef = DCEE366D29FAF740001BBCD3 /* RxTest */; };
+		DCEE367429FAFBB6001BBCD3 /* NewsContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEE367329FAFBB6001BBCD3 /* NewsContainer.swift */; };
+		DCEE367629FAFBED001BBCD3 /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEE367529FAFBED001BBCD3 /* News.swift */; };
+		DCEE367829FAFC3B001BBCD3 /* Media.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEE367729FAFC3B001BBCD3 /* Media.swift */; };
+		DCEE367A29FAFC84001BBCD3 /* MediaMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEE367929FAFC84001BBCD3 /* MediaMetadata.swift */; };
+		DCEE367C29FAFCBF001BBCD3 /* Format.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEE367B29FAFCBF001BBCD3 /* Format.swift */; };
+		DCEE367E29FAFCFF001BBCD3 /* Subtype.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEE367D29FAFCFF001BBCD3 /* Subtype.swift */; };
+		DCEE368029FAFD1F001BBCD3 /* MediaType.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEE367F29FAFD1F001BBCD3 /* MediaType.swift */; };
+		DCEE368229FAFD76001BBCD3 /* Source.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEE368129FAFD76001BBCD3 /* Source.swift */; };
+		DCEE368429FAFD9C001BBCD3 /* ResultType.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEE368329FAFD9C001BBCD3 /* ResultType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +87,15 @@
 		DCEE364529FAF511001BBCD3 /* UIView+AutoLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+AutoLayout.swift"; sourceTree = "<group>"; };
 		DCEE364B29FAF55B001BBCD3 /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
 		DCEE364D29FAF568001BBCD3 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		DCEE367329FAFBB6001BBCD3 /* NewsContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsContainer.swift; sourceTree = "<group>"; };
+		DCEE367529FAFBED001BBCD3 /* News.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
+		DCEE367729FAFC3B001BBCD3 /* Media.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Media.swift; sourceTree = "<group>"; };
+		DCEE367929FAFC84001BBCD3 /* MediaMetadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaMetadata.swift; sourceTree = "<group>"; };
+		DCEE367B29FAFCBF001BBCD3 /* Format.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Format.swift; sourceTree = "<group>"; };
+		DCEE367D29FAFCFF001BBCD3 /* Subtype.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Subtype.swift; sourceTree = "<group>"; };
+		DCEE367F29FAFD1F001BBCD3 /* MediaType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaType.swift; sourceTree = "<group>"; };
+		DCEE368129FAFD76001BBCD3 /* Source.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Source.swift; sourceTree = "<group>"; };
+		DCEE368329FAFD9C001BBCD3 /* ResultType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultType.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -275,8 +293,25 @@
 		DCEE367129FAF8B9001BBCD3 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				DCEE367229FAFB8B001BBCD3 /* Entities */,
 			);
 			path = Domain;
+			sourceTree = "<group>";
+		};
+		DCEE367229FAFB8B001BBCD3 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				DCEE367329FAFBB6001BBCD3 /* NewsContainer.swift */,
+				DCEE367529FAFBED001BBCD3 /* News.swift */,
+				DCEE367729FAFC3B001BBCD3 /* Media.swift */,
+				DCEE367929FAFC84001BBCD3 /* MediaMetadata.swift */,
+				DCEE367B29FAFCBF001BBCD3 /* Format.swift */,
+				DCEE367D29FAFCFF001BBCD3 /* Subtype.swift */,
+				DCEE367F29FAFD1F001BBCD3 /* MediaType.swift */,
+				DCEE368129FAFD76001BBCD3 /* Source.swift */,
+				DCEE368329FAFD9C001BBCD3 /* ResultType.swift */,
+			);
+			path = Entities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -430,18 +465,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DCEE368029FAFD1F001BBCD3 /* MediaType.swift in Sources */,
+				DCEE367E29FAFCFF001BBCD3 /* Subtype.swift in Sources */,
 				DCEE364029FAF428001BBCD3 /* NibInstantiatable.swift in Sources */,
 				DCEE363929FAF38A001BBCD3 /* AppCoordinator.swift in Sources */,
 				DCEE364829FAF511001BBCD3 /* UIViewController+Extensions.swift in Sources */,
+				DCEE367629FAFBED001BBCD3 /* News.swift in Sources */,
 				DCEE364129FAF428001BBCD3 /* DataState.swift in Sources */,
 				DCEE364729FAF511001BBCD3 /* UIImageView+Extensions.swift in Sources */,
+				DCEE367829FAFC3B001BBCD3 /* Media.swift in Sources */,
 				DCEE364C29FAF55B001BBCD3 /* HomeCoordinator.swift in Sources */,
 				DCEE35FE29FAF128001BBCD3 /* AppDelegate.swift in Sources */,
 				DCEE363F29FAF428001BBCD3 /* Coordinator.swift in Sources */,
+				DCEE367429FAFBB6001BBCD3 /* NewsContainer.swift in Sources */,
 				DCEE364E29FAF568001BBCD3 /* HomeViewModel.swift in Sources */,
 				DCEE360029FAF128001BBCD3 /* SceneDelegate.swift in Sources */,
+				DCEE367A29FAFC84001BBCD3 /* MediaMetadata.swift in Sources */,
+				DCEE367C29FAFCBF001BBCD3 /* Format.swift in Sources */,
+				DCEE368229FAFD76001BBCD3 /* Source.swift in Sources */,
 				DCEE364629FAF511001BBCD3 /* UIView+Extensions.swift in Sources */,
 				DCEE364929FAF511001BBCD3 /* UIView+AutoLayout.swift in Sources */,
+				DCEE368429FAFD9C001BBCD3 /* ResultType.swift in Sources */,
 				DCEE363629FAF27F001BBCD3 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
