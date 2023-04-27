@@ -54,6 +54,8 @@
 		DCEE369829FB00CF001BBCD3 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEE369629FB00CF001BBCD3 /* NetworkError.swift */; };
 		DCEE369A29FB019F001BBCD3 /* ErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEE369929FB019F001BBCD3 /* ErrorResponse.swift */; };
 		DCEE369C29FB01D1001BBCD3 /* NLError.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEE369B29FB01D1001BBCD3 /* NLError.swift */; };
+		DCEE369E29FB02B1001BBCD3 /* NewsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEE369D29FB02B1001BBCD3 /* NewsRepository.swift */; };
+		DCEE36A029FB02BD001BBCD3 /* NewsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEE369F29FB02BD001BBCD3 /* NewsService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -116,6 +118,8 @@
 		DCEE369629FB00CF001BBCD3 /* NetworkError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		DCEE369929FB019F001BBCD3 /* ErrorResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorResponse.swift; sourceTree = "<group>"; };
 		DCEE369B29FB01D1001BBCD3 /* NLError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NLError.swift; sourceTree = "<group>"; };
+		DCEE369D29FB02B1001BBCD3 /* NewsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsRepository.swift; sourceTree = "<group>"; };
+		DCEE369F29FB02BD001BBCD3 /* NewsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -365,6 +369,7 @@
 		DCEE368729FB007F001BBCD3 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				DCEE369F29FB02BD001BBCD3 /* NewsService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -372,6 +377,7 @@
 		DCEE368829FB0091001BBCD3 /* Repository */ = {
 			isa = PBXGroup;
 			children = (
+				DCEE369D29FB02B1001BBCD3 /* NewsRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -545,8 +551,10 @@
 				DCEE35FE29FAF128001BBCD3 /* AppDelegate.swift in Sources */,
 				DCEE363F29FAF428001BBCD3 /* Coordinator.swift in Sources */,
 				DCEE367429FAFBB6001BBCD3 /* NewsContainer.swift in Sources */,
+				DCEE36A029FB02BD001BBCD3 /* NewsService.swift in Sources */,
 				DCEE364E29FAF568001BBCD3 /* HomeViewModel.swift in Sources */,
 				DCEE369329FB00B2001BBCD3 /* Enums.swift in Sources */,
+				DCEE369E29FB02B1001BBCD3 /* NewsRepository.swift in Sources */,
 				DCEE360029FAF128001BBCD3 /* SceneDelegate.swift in Sources */,
 				DCEE367A29FAFC84001BBCD3 /* MediaMetadata.swift in Sources */,
 				DCEE367C29FAFCBF001BBCD3 /* Format.swift in Sources */,
