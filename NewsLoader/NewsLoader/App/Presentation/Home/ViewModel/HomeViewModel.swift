@@ -15,9 +15,9 @@ protocol HomeViewModelInputs: AnyObject {
 }
 
 protocol HomeViewModelOutputs: AnyObject {
-    var dataSubject: BehaviorRelay<[News]> { get }
-    var stateSubject: BehaviorRelay<DataState?> { get }
-    var errorSubject: BehaviorRelay<String?> { get }
+    var data: Driver<[News]> { get }
+    var state: Driver<DataState?> { get }
+    var error: Driver<String?> { get }
     var screenTitle: String { get }
     var cellIdentifier: String { get }
 }
@@ -39,13 +39,22 @@ final class HomeViewModel: HomeViewModelProtocol {
     //MARK: - Outputs
     let cellIdentifier = "NewsCell"
     let screenTitle = "Most Popular News"
-    let dataSubject = BehaviorRelay<[News]>(value: [])
-    let stateSubject = BehaviorRelay<DataState?>(value: nil)
-    let errorSubject = BehaviorRelay<String?>(value: nil)
+    var data: Driver<[News]> {
+        return dataSubject.asDriver()
+    }
+    var state: Driver<DataState?> {
+        return stateSubject.asDriver()
+    }
+    var error: Driver<String?> {
+        return errorSubject.asDriver()
+    }
     
     //MARK: -
     private let newsRepository: NewsRepositoryType
     private let disposeBag = DisposeBag()
+    private let dataSubject = BehaviorRelay<[News]>(value: [])
+    private let stateSubject = BehaviorRelay<DataState?>(value: nil)
+    private let errorSubject = BehaviorRelay<String?>(value: nil)
     private let period = 7
     
     init(newsRepository: NewsRepositoryType) {

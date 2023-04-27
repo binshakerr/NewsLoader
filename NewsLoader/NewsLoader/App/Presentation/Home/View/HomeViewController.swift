@@ -10,7 +10,7 @@ import RxSwift
 import RxCocoa
 
 class HomeViewController: UIViewController {
-
+    
     //MARK: - Properties
     private let viewModel: HomeViewModelProtocol
     private let disposeBag = DisposeBag()
@@ -24,11 +24,7 @@ class HomeViewController: UIViewController {
         table.refreshControl = refreshControl
         return table
     }()
-    lazy var refreshControl: UIRefreshControl = {
-        let refresh = UIRefreshControl()
-        refresh.addTarget(self, action: #selector(self.refreshContent(_:)), for: .valueChanged)
-        return refresh
-    }()
+    lazy var refreshControl = UIRefreshControl()
     
     //MARK: - Life cycle
     init(viewModel: HomeViewModelProtocol, coordinator: HomeCoordinator) {
@@ -62,31 +58,31 @@ class HomeViewController: UIViewController {
     private func bindOutputs() {
         viewModel
             .outputs
-            .stateSubject
-            .subscribe(onNext:  { [weak self] state in
+            .state
+            .drive { [weak self] state in
                 guard let self = self, let state = state else { return }
                 state == .loading ? self.startLoading() : self.stopLoading()
                 if state != .loading {
                     self.refreshControl.endRefreshing()
                 }
-            })
+            }
             .disposed(by: disposeBag)
         
         viewModel
             .outputs
-            .errorSubject
-            .subscribe(onNext:  { [weak self] message in
+            .error
+            .drive { [weak self] message in
                 guard let self = self, let message = message else { return }
                 self.alertError(message: message)
-            })
+            }
             .disposed(by: disposeBag)
         
         viewModel
             .outputs
-            .dataSubject
-            .bind(to: tableView
+            .data
+            .drive(tableView
                 .rx
-                .items(cellIdentifier: viewModel.cellIdentifier, cellType: NewsCell.self)) { (items, object, cell) in
+                .items(cellIdentifier: viewModel.cellIdentifier, cellType: NewsCell.self)) { (_, object, cell) in
                     cell.news = NewsCellViewModel(news: object)
                 }
                 .disposed(by: disposeBag)
@@ -96,16 +92,18 @@ class HomeViewController: UIViewController {
         tableView
             .rx
             .modelSelected(News.self)
-            .subscribe(onNext:  { [weak self] news in
-//                self?.coordinator.
-            })
+            .subscribe { [weak self] news in
+                //                self?.coordinator.
+            }
+            .disposed(by: disposeBag)
+        
+        refreshControl
+            .rx
+            .controlEvent(.valueChanged)
+            .subscribe { [weak self] _ in
+                self?.viewModel.refreshContent()
+            }
             .disposed(by: disposeBag)
     }
     
-    @objc
-    private func refreshContent(_ sender: AnyObject) {
-        viewModel.refreshContent()
-    }
-    
-
 }
