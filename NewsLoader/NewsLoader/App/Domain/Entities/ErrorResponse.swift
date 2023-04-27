@@ -9,4 +9,8 @@ import Foundation
 
 struct ErrorResponse: Decodable {
     let error: NLError
+    
+    enum CodingKeys: String, CodingKey {
+        case error = "fault"
+    }
 }
