@@ -42,7 +42,7 @@ class HomeViewController: UIViewController {
         setupUI()
         bindInputs()
         bindOutputs()
-        viewModel.fetchMostPopularNews()
+        viewModel.inputs.loadMostPopular.onNext(true)
     }
     
     //MARK: -

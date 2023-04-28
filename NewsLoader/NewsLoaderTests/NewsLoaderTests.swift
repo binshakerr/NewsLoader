@@ -2,35 +2,84 @@
 //  NewsLoaderTests.swift
 //  NewsLoaderTests
 //
-//  Created by Eslam Shaker on 27/04/2023.
+//  Created by Eslam Shaker on 28/04/2023.
 //
 
 import XCTest
+import RxSwift
+import RxCocoa
+import RxTest
+import RxBlocking
 @testable import NewsLoader
 
 final class NewsLoaderTests: XCTestCase {
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    var scheduler: TestScheduler!
+    var disposeBag: DisposeBag!
+    var popularNewsSuccessData: Data!
+    var homeViewModel: HomeViewModelProtocol!
+    var detailsViewModel: NewsDetailsViewModel!
+    var networkManager: NetworkManagerType!
+    let timeOut: Double = 10
+    
+    override func setUp() {
+        scheduler = TestScheduler(initialClock: 0)
+        disposeBag = DisposeBag()
     }
 
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    override func tearDown() {
+        networkManager = nil
+        popularNewsSuccessData = nil
+        homeViewModel = nil
+        detailsViewModel = nil
+        scheduler = nil
+        disposeBag = nil
+    }
+    
+    //MARK: - Home Tests
+    func test_HomeViewModel_InitialState() {
+        networkManager = NetworkManager.shared
+        homeViewModel = HomeViewModel(newsRepository: NewsRepository(networkManager: networkManager))
+
+        XCTAssertTrue(try homeViewModel.outputs.data.toBlocking().first()?.count == 0)
+        XCTAssertEqual(homeViewModel.outputs.screenTitle, "Most Popular News")
+        XCTAssertEqual(homeViewModel.outputs.cellIdentifier, "NewsCell")
     }
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
-    }
+    func test_PopularNews_Success() {
+        // Given
+        popularNewsSuccessData = Utils.MockResponseType.successNewsData.sampleDataFor(self)
+        let session = getMockSessionFor(popularNewsSuccessData)
+        networkManager = NetworkManager(session: session, parser: Parser())
+        let newsRepository = NewsRepository(networkManager: networkManager)
+        homeViewModel = HomeViewModel(newsRepository: newsRepository)
 
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
+        // When
+        let newsObserver = scheduler.createObserver([News].self)
+        homeViewModel.outputs.data
+            .asObservable()
+            .subscribe(newsObserver)
+            .disposed(by: disposeBag)
+        scheduler.createHotObservable([(.next(10, true))])
+            .bind(to: homeViewModel.inputs.loadMostPopular)
+            .disposed(by: disposeBag)
+        scheduler.start()
 
+        // Then
+        let newsElement = newsObserver.events.last?.value.element
+        XCTAssertEqual(newsElement?.count, 20)
+    }
+    
+    
+    //MARK: - Details test
+
+    func test_DetailsViewModel_InitialState() {
+        let mockNews = News(uri: nil, url: nil, id: nil, assetID: nil, source: nil, publishedDate: nil, updated: nil, section: nil, subsection: nil, nytdsection: nil, adxKeywords: nil, byline: nil, type: nil, title: nil, abstract: nil, desFacet: nil, orgFacet: nil, perFacet: nil, geoFacet: nil, media: nil, etaID: nil)
+        detailsViewModel = NewsDetailsViewModel(news: mockNews)
+
+        XCTAssertTrue(try detailsViewModel.outputs.data.toBlocking().first()?.count == 1)
+        XCTAssertEqual(detailsViewModel.outputs.screenTitle, "News Details")
+        XCTAssertEqual(detailsViewModel.outputs.cellIdentifier, "NewsDetailsCell")
+    }
+    
 }

@@ -10,7 +10,7 @@ import RxSwift
 import RxCocoa
 
 protocol HomeViewModelInputs: AnyObject {
-    func fetchMostPopularNews()
+    var loadMostPopular: PublishSubject<Bool> { get }
     func refreshContent()
 }
 
@@ -34,7 +34,7 @@ final class HomeViewModel: HomeViewModelProtocol {
     var outputs: HomeViewModelOutputs { self }
     
     //MARK: - Inputs
-    let searchSubject = PublishSubject<String>()
+    var loadMostPopular = PublishSubject<Bool>()
     
     //MARK: - Outputs
     let cellIdentifier = "NewsCell"
@@ -59,9 +59,14 @@ final class HomeViewModel: HomeViewModelProtocol {
     
     init(newsRepository: NewsRepositoryType) {
         self.newsRepository = newsRepository
+        inputs.loadMostPopular.subscribe { [weak self] load in
+            if load {
+                self?.fetchMostPopularNews()
+            }
+        }.disposed(by: disposeBag)
     }
     
-    func fetchMostPopularNews() {
+    private func fetchMostPopularNews() {
         stateSubject.accept(.loading)
         newsRepository.getMostPopular(period: period)
             .subscribe(onNext: { [weak self] response in
@@ -79,6 +84,6 @@ final class HomeViewModel: HomeViewModelProtocol {
     func refreshContent() {
         stateSubject.accept(nil)
         dataSubject.accept([])
-        fetchMostPopularNews()
+        inputs.loadMostPopular.onNext(true)
     }
 }

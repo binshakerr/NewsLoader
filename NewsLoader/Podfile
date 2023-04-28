@@ -1,0 +1,16 @@
+platform :ios, '14.0'
+use_frameworks!
+
+target 'NewsLoader' do
+  
+  pod 'RxSwift'
+  pod 'RxCocoa'
+  
+  target 'NewsLoaderTests' do
+    inherit! :search_paths
+    # Pods for testing
+    pod 'RxTest'
+    pod 'RxBlocking'
+  end
+  
+end
