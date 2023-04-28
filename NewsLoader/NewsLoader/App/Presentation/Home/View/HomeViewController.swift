@@ -93,7 +93,7 @@ class HomeViewController: UIViewController {
             .rx
             .modelSelected(News.self)
             .subscribe { [weak self] news in
-                //                self?.coordinator.
+                self?.coordinator.showNewsDetailsFor(news)
             }
             .disposed(by: disposeBag)
         

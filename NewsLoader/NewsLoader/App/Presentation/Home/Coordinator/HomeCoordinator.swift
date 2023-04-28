@@ -27,4 +27,10 @@ class HomeCoordinator: Coordinator {
         return controller
     }
     
+    func showNewsDetailsFor(_ news: News) {
+        let viewModel = NewsDetailsViewModel(news: news)
+        let controller = NewsDetailsViewController(viewModel: viewModel)
+        navigationController.pushViewController(controller, animated: true)
+    }
+    
 }
