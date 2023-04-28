@@ -20,10 +20,12 @@ final class NewsLoaderTests: XCTestCase {
     var homeViewModel: HomeViewModelProtocol!
     var detailsViewModel: NewsDetailsViewModel!
     var networkManager: NetworkManagerType!
+    var newsRepository: MockNewsRepository!
     
     override func setUp() {
         scheduler = TestScheduler(initialClock: 0)
         disposeBag = DisposeBag()
+        newsRepository = MockNewsRepository()
     }
 
     override func tearDown() {
@@ -31,12 +33,12 @@ final class NewsLoaderTests: XCTestCase {
         popularNewsSuccessData = nil
         homeViewModel = nil
         detailsViewModel = nil
+        newsRepository = nil
     }
     
     //MARK: - Home Tests
     func test_HomeViewModel_InitialState() {
-        networkManager = NetworkManager.shared
-        homeViewModel = HomeViewModel(newsRepository: NewsRepository(networkManager: networkManager))
+        homeViewModel = HomeViewModel(newsRepository: newsRepository)
 
         XCTAssertTrue(try homeViewModel.outputs.data.toBlocking().first()?.count == 0)
         XCTAssertEqual(homeViewModel.outputs.screenTitle, "Most Popular News")
@@ -46,9 +48,8 @@ final class NewsLoaderTests: XCTestCase {
     func test_PopularNews_Success() {
         // Given
         popularNewsSuccessData = Utils.MockResponseType.successNewsData.sampleDataFor(self)
-        let session = getMockSessionFor(popularNewsSuccessData)
-        networkManager = NetworkManager(session: session, parser: Parser())
-        let newsRepository = NewsRepository(networkManager: networkManager)
+        let decodedItem = try? JSONDecoder().decode(NewsContainer.self, from: popularNewsSuccessData)
+        newsRepository.newsStubData = decodedItem
         homeViewModel = HomeViewModel(newsRepository: newsRepository)
 
         // When
@@ -65,6 +66,8 @@ final class NewsLoaderTests: XCTestCase {
         // Then
         let newsElement = newsObserver.events.last?.value.element
         XCTAssertEqual(newsElement?.count, 20)
+        XCTAssertEqual(newsElement?[15].abstract, "The court’s order seemed to vindicate a commitment in last year’s decision in Dobbs: to leave further questions about abortion to the political process.")
+        XCTAssertEqual(newsElement?[7].title, "Airman Shared Sensitive Intelligence More Widely and for Longer Than Previously Known")
     }
     
     

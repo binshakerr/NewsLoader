@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		744F4760E630BD5788DDCF62 /* Pods_NewsLoader.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DD65D6720103775CFB403F6 /* Pods_NewsLoader.framework */; };
+		DC97CB8829FC38D300D46059 /* MockNewsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC97CB8729FC38D300D46059 /* MockNewsRepository.swift */; };
+		DC97CB8A29FC398800D46059 /* MockError.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC97CB8929FC398800D46059 /* MockError.swift */; };
 		DCEE35FE29FAF128001BBCD3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEE35FD29FAF128001BBCD3 /* AppDelegate.swift */; };
 		DCEE360029FAF128001BBCD3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEE35FF29FAF128001BBCD3 /* SceneDelegate.swift */; };
 		DCEE360729FAF129001BBCD3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DCEE360629FAF129001BBCD3 /* Assets.xcassets */; };
@@ -80,6 +82,8 @@
 		A7A9F1487D5A4ACEF60B9CAC /* Pods-NewsLoader.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NewsLoader.release.xcconfig"; path = "Target Support Files/Pods-NewsLoader/Pods-NewsLoader.release.xcconfig"; sourceTree = "<group>"; };
 		BCB1E4CC1FC0D325425D851D /* Pods-NewsLoader.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NewsLoader.debug.xcconfig"; path = "Target Support Files/Pods-NewsLoader/Pods-NewsLoader.debug.xcconfig"; sourceTree = "<group>"; };
 		D575221B12F962CF8F0A763D /* Pods-NewsLoaderTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NewsLoaderTests.debug.xcconfig"; path = "Target Support Files/Pods-NewsLoaderTests/Pods-NewsLoaderTests.debug.xcconfig"; sourceTree = "<group>"; };
+		DC97CB8729FC38D300D46059 /* MockNewsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNewsRepository.swift; sourceTree = "<group>"; };
+		DC97CB8929FC398800D46059 /* MockError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockError.swift; sourceTree = "<group>"; };
 		DCEE35FA29FAF128001BBCD3 /* NewsLoader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NewsLoader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCEE35FD29FAF128001BBCD3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DCEE35FF29FAF128001BBCD3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -168,6 +172,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		DC97CB8629FC38BC00D46059 /* MockRepository */ = {
+			isa = PBXGroup;
+			children = (
+				DC97CB8729FC38D300D46059 /* MockNewsRepository.swift */,
+			);
+			path = MockRepository;
+			sourceTree = "<group>";
+		};
 		DCEE35F129FAF128001BBCD3 = {
 			isa = PBXGroup;
 			children = (
@@ -202,6 +214,7 @@
 		DCEE361329FAF129001BBCD3 /* NewsLoaderTests */ = {
 			isa = PBXGroup;
 			children = (
+				DC97CB8629FC38BC00D46059 /* MockRepository */,
 				DCEE36C729FBA990001BBCD3 /* MockResponse */,
 				DCEE36C629FBA977001BBCD3 /* Helpers */,
 				DCEE361429FAF129001BBCD3 /* NewsLoaderTests.swift */,
@@ -423,6 +436,7 @@
 			children = (
 				DCEE36BE29FBA850001BBCD3 /* MockURLProtocol.swift */,
 				DCEE36C029FBA860001BBCD3 /* XCTestCase+Extensions.swift */,
+				DC97CB8929FC398800D46059 /* MockError.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -443,7 +457,6 @@
 				D575221B12F962CF8F0A763D /* Pods-NewsLoaderTests.debug.xcconfig */,
 				E5A6667162BC0339904ECE5C /* Pods-NewsLoaderTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -525,10 +538,10 @@
 			);
 			mainGroup = DCEE35F129FAF128001BBCD3;
 			packageReferences = (
-				DCEE364F29FAF5CD001BBCD3 /* XCRemoteSwiftPackageReference "Kingfisher.git" */,
-				DCEE365229FAF5DB001BBCD3 /* XCRemoteSwiftPackageReference "Alamofire.git" */,
-				DCEE365529FAF606001BBCD3 /* XCRemoteSwiftPackageReference "IQKeyboardManager.git" */,
-				DCEE366129FAF6ED001BBCD3 /* XCRemoteSwiftPackageReference "NVActivityIndicatorView.git" */,
+				DCEE364F29FAF5CD001BBCD3 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				DCEE365229FAF5DB001BBCD3 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				DCEE365529FAF606001BBCD3 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
+				DCEE366129FAF6ED001BBCD3 /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */,
 			);
 			productRefGroup = DCEE35FB29FAF128001BBCD3 /* Products */;
 			projectDirPath = "";
@@ -696,7 +709,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				DCEE361529FAF129001BBCD3 /* NewsLoaderTests.swift in Sources */,
+				DC97CB8A29FC398800D46059 /* MockError.swift in Sources */,
 				DCEE36C129FBA860001BBCD3 /* XCTestCase+Extensions.swift in Sources */,
+				DC97CB8829FC38D300D46059 /* MockNewsRepository.swift in Sources */,
 				DCEE36BF29FBA850001BBCD3 /* MockURLProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -980,7 +995,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		DCEE364F29FAF5CD001BBCD3 /* XCRemoteSwiftPackageReference "Kingfisher.git" */ = {
+		DCEE364F29FAF5CD001BBCD3 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
 			requirement = {
@@ -988,7 +1003,7 @@
 				minimumVersion = 7.0.0;
 			};
 		};
-		DCEE365229FAF5DB001BBCD3 /* XCRemoteSwiftPackageReference "Alamofire.git" */ = {
+		DCEE365229FAF5DB001BBCD3 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
 			requirement = {
@@ -996,7 +1011,7 @@
 				minimumVersion = 5.0.0;
 			};
 		};
-		DCEE365529FAF606001BBCD3 /* XCRemoteSwiftPackageReference "IQKeyboardManager.git" */ = {
+		DCEE365529FAF606001BBCD3 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/hackiftekhar/IQKeyboardManager.git";
 			requirement = {
@@ -1005,7 +1020,7 @@
 				minimumVersion = 6.0.0;
 			};
 		};
-		DCEE366129FAF6ED001BBCD3 /* XCRemoteSwiftPackageReference "NVActivityIndicatorView.git" */ = {
+		DCEE366129FAF6ED001BBCD3 /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ninjaprox/NVActivityIndicatorView.git";
 			requirement = {
@@ -1018,27 +1033,27 @@
 /* Begin XCSwiftPackageProductDependency section */
 		DCEE365029FAF5CD001BBCD3 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = DCEE364F29FAF5CD001BBCD3 /* XCRemoteSwiftPackageReference "Kingfisher.git" */;
+			package = DCEE364F29FAF5CD001BBCD3 /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
 		};
 		DCEE365329FAF5DB001BBCD3 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = DCEE365229FAF5DB001BBCD3 /* XCRemoteSwiftPackageReference "Alamofire.git" */;
+			package = DCEE365229FAF5DB001BBCD3 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
 		};
 		DCEE365629FAF606001BBCD3 /* IQKeyboardManagerSwift */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = DCEE365529FAF606001BBCD3 /* XCRemoteSwiftPackageReference "IQKeyboardManager.git" */;
+			package = DCEE365529FAF606001BBCD3 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
 			productName = IQKeyboardManagerSwift;
 		};
 		DCEE366229FAF6ED001BBCD3 /* NVActivityIndicatorView */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = DCEE366129FAF6ED001BBCD3 /* XCRemoteSwiftPackageReference "NVActivityIndicatorView.git" */;
+			package = DCEE366129FAF6ED001BBCD3 /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */;
 			productName = NVActivityIndicatorView;
 		};
 		DCEE366429FAF6ED001BBCD3 /* NVActivityIndicatorViewExtended */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = DCEE366129FAF6ED001BBCD3 /* XCRemoteSwiftPackageReference "NVActivityIndicatorView.git" */;
+			package = DCEE366129FAF6ED001BBCD3 /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */;
 			productName = NVActivityIndicatorViewExtended;
 		};
 /* End XCSwiftPackageProductDependency section */
