@@ -20,7 +20,6 @@ final class NewsLoaderTests: XCTestCase {
     var homeViewModel: HomeViewModelProtocol!
     var detailsViewModel: NewsDetailsViewModel!
     var networkManager: NetworkManagerType!
-    let timeOut: Double = 10
     
     override func setUp() {
         scheduler = TestScheduler(initialClock: 0)
@@ -32,8 +31,6 @@ final class NewsLoaderTests: XCTestCase {
         popularNewsSuccessData = nil
         homeViewModel = nil
         detailsViewModel = nil
-        scheduler = nil
-        disposeBag = nil
     }
     
     //MARK: - Home Tests
@@ -58,9 +55,9 @@ final class NewsLoaderTests: XCTestCase {
         let newsObserver = scheduler.createObserver([News].self)
         homeViewModel.outputs.data
             .asObservable()
-            .subscribe(newsObserver)
+            .bind(to: newsObserver)
             .disposed(by: disposeBag)
-        scheduler.createHotObservable([(.next(10, true))])
+        scheduler.createColdObservable([(.next(10, true))])
             .bind(to: homeViewModel.inputs.loadMostPopular)
             .disposed(by: disposeBag)
         scheduler.start()
