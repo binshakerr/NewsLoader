@@ -42,7 +42,7 @@ class HomeViewController: UIViewController {
         setupUI()
         bindInputs()
         bindOutputs()
-        viewModel.inputs.loadMostPopular.onNext(true)
+        viewModel.inputs.load.onNext(())
     }
     
     //MARK: -
@@ -101,7 +101,7 @@ class HomeViewController: UIViewController {
             .rx
             .controlEvent(.valueChanged)
             .subscribe { [weak self] _ in
-                self?.viewModel.refreshContent()
+                self?.viewModel.reload.onNext(())
             }
             .disposed(by: disposeBag)
     }

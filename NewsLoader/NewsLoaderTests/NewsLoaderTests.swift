@@ -58,8 +58,8 @@ final class NewsLoaderTests: XCTestCase {
             .asObservable()
             .bind(to: newsObserver)
             .disposed(by: disposeBag)
-        scheduler.createColdObservable([(.next(10, true))])
-            .bind(to: homeViewModel.inputs.loadMostPopular)
+        scheduler.createColdObservable([(.next(10, ()))])
+            .bind(to: homeViewModel.inputs.load)
             .disposed(by: disposeBag)
         scheduler.start()
 

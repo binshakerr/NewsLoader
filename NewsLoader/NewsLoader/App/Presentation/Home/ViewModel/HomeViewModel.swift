@@ -10,8 +10,8 @@ import RxSwift
 import RxCocoa
 
 protocol HomeViewModelInputs: AnyObject {
-    var loadMostPopular: PublishSubject<Bool> { get }
-    func refreshContent()
+    var load: AnyObserver<Void> { get set }
+    var reload: AnyObserver<Void> { get set }
 }
 
 protocol HomeViewModelOutputs: AnyObject {
@@ -34,7 +34,8 @@ final class HomeViewModel: HomeViewModelProtocol {
     var outputs: HomeViewModelOutputs { self }
     
     //MARK: - Inputs
-    var loadMostPopular = PublishSubject<Bool>()
+    var load: AnyObserver<Void>
+    var reload: AnyObserver<Void>
     
     //MARK: - Outputs
     let cellIdentifier = "NewsCell"
@@ -55,14 +56,24 @@ final class HomeViewModel: HomeViewModelProtocol {
     private let dataSubject = BehaviorRelay<[News]>(value: [])
     private let stateSubject = BehaviorRelay<DataState?>(value: nil)
     private let errorSubject = BehaviorRelay<String?>(value: nil)
+    private let loadMostPopularSubject = PublishSubject<Void>()
+    private let reloadSubject = PublishSubject<Void>()
     private let period = 7
     
     init(newsRepository: NewsRepositoryType) {
         self.newsRepository = newsRepository
-        inputs.loadMostPopular.subscribe { [weak self] load in
-            if load {
-                self?.fetchMostPopularNews()
-            }
+        load = loadMostPopularSubject.asObserver()
+        reload = reloadSubject.asObserver()
+        bindInputs()
+    }
+    
+    private func bindInputs() {
+        loadMostPopularSubject.subscribe { [weak self] _ in
+            self?.fetchMostPopularNews()
+        }.disposed(by: disposeBag)
+        
+        reloadSubject.subscribe { [weak self] _ in
+            self?.refreshContent()
         }.disposed(by: disposeBag)
     }
     
@@ -81,9 +92,9 @@ final class HomeViewModel: HomeViewModelProtocol {
             .disposed(by: disposeBag)
     }
     
-    func refreshContent() {
+    private func refreshContent() {
         stateSubject.accept(nil)
         dataSubject.accept([])
-        inputs.loadMostPopular.onNext(true)
+        loadMostPopularSubject.onNext(())
     }
 }
