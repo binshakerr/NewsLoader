@@ -9,45 +9,31 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-protocol NewsDetailsViewModelInputs: AnyObject {
-    var news: News { get }
+protocol NewsDetailsViewModelType: ViewModelType {
+    var input: NewsDetailsViewModel.Input { get }
+    var output: NewsDetailsViewModel.Output { get }
 }
 
-protocol NewsDetailsViewModelOutputs: AnyObject {
-    var screenTitle: String { get }
-    var cellIdentifier: String { get }
-    var data: Driver<[DetailsCellViewModel]> { get }
-}
-
-
-protocol NewsDetailsViewModelProtocol: NewsDetailsViewModelInputs, NewsDetailsViewModelOutputs {
-    var inputs: NewsDetailsViewModelInputs { get }
-    var outputs: NewsDetailsViewModelOutputs { get }
-}
-
-
-final class NewsDetailsViewModel: NewsDetailsViewModelProtocol {
+final class NewsDetailsViewModel: NewsDetailsViewModelType {
     
-    var inputs: NewsDetailsViewModelInputs { self }
-    var outputs: NewsDetailsViewModelOutputs { self }
+    var input: Input
+    var output: Output
     
-    var news: News
-    private let dataSubject = BehaviorRelay<[DetailsCellViewModel]>(value: [])
-    var data: Driver<[DetailsCellViewModel]> {
-        return dataSubject.asDriver()
+    struct Input {
+        let news: News
     }
 
+    struct Output {
+        let screenTitle: String
+        let cellIdentifier: String
+        let data: Driver<[DetailsCellViewModel]>
+    }
+    
+    private let dataSubject = BehaviorRelay<[DetailsCellViewModel]>(value: [])
+   
     init(news: News) {
-        self.news = news
+        self.input = Input(news: news)
+        self.output = Output(screenTitle: "News Details", cellIdentifier: "NewsDetailsCell", data: dataSubject.asDriver())
         self.dataSubject.accept([DetailsCellViewModel(news: news)])
     }
-    
-    var screenTitle: String {
-        "News Details"
-    }
-    
-    var cellIdentifier: String {
-        "NewsDetailsCell"
-    }
-    
 }

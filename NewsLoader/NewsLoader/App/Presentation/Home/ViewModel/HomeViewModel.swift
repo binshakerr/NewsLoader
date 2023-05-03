@@ -9,45 +9,27 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-protocol HomeViewModelInputs: AnyObject {
-    var load: AnyObserver<Void> { get set }
-    var reload: AnyObserver<Void> { get set }
+protocol HomeViewModelType: ViewModelType {
+    var input: HomeViewModel.Input { get }
+    var output: HomeViewModel.Output { get }
 }
 
-protocol HomeViewModelOutputs: AnyObject {
-    var data: Driver<[News]> { get }
-    var state: Driver<DataState?> { get }
-    var error: Driver<String?> { get }
-    var screenTitle: String { get }
-    var cellIdentifier: String { get }
-}
-
-
-protocol HomeViewModelProtocol: HomeViewModelInputs, HomeViewModelOutputs {
-    var inputs: HomeViewModelInputs { get }
-    var outputs: HomeViewModelOutputs { get }
-}
-
-final class HomeViewModel: HomeViewModelProtocol {
+final class HomeViewModel: HomeViewModelType {
     
-    var inputs: HomeViewModelInputs { self }
-    var outputs: HomeViewModelOutputs { self }
+    var input: Input
+    var output: Output
     
-    //MARK: - Inputs
-    var load: AnyObserver<Void>
-    var reload: AnyObserver<Void>
-    
-    //MARK: - Outputs
-    let cellIdentifier = "NewsCell"
-    let screenTitle = "Most Popular News"
-    var data: Driver<[News]> {
-        return dataSubject.asDriver()
+    struct Input {
+        let load: AnyObserver<Void>
+        let reload: AnyObserver<Void>
     }
-    var state: Driver<DataState?> {
-        return stateSubject.asDriver()
-    }
-    var error: Driver<String?> {
-        return errorSubject.asDriver()
+
+    struct Output {
+        let data: Driver<[News]>
+        let state: Driver<DataState?>
+        let error: Driver<String?>
+        let screenTitle: String
+        let cellIdentifier: String
     }
     
     //MARK: -
@@ -62,8 +44,8 @@ final class HomeViewModel: HomeViewModelProtocol {
     
     init(newsRepository: NewsRepositoryType) {
         self.newsRepository = newsRepository
-        load = loadMostPopularSubject.asObserver()
-        reload = reloadSubject.asObserver()
+        self.input = Input(load: loadMostPopularSubject.asObserver(), reload: reloadSubject.asObserver())
+        self.output = Output(data: dataSubject.asDriver(), state: stateSubject.asDriver(), error: errorSubject.asDriver(), screenTitle: "Most Popular News", cellIdentifier: "NewsCell")
         bindInputs()
     }
     

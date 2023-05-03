@@ -12,12 +12,12 @@ import RxCocoa
 class NewsDetailsViewController: UIViewController {
     
     //MARK: - Properties
-    private let viewModel: NewsDetailsViewModelProtocol
+    private let viewModel: any NewsDetailsViewModelType
     private let disposeBag = DisposeBag()
     
     lazy var tableView: UITableView = {
         let table = UITableView()
-        table.register(UINib(nibName: viewModel.cellIdentifier, bundle: nil), forCellReuseIdentifier: viewModel.cellIdentifier)
+        table.register(UINib(nibName: viewModel.output.cellIdentifier, bundle: nil), forCellReuseIdentifier: viewModel.output.cellIdentifier)
         table.rowHeight = UITableView.automaticDimension
         table.estimatedRowHeight = 500
         table.separatorStyle = .none
@@ -25,7 +25,7 @@ class NewsDetailsViewController: UIViewController {
     }()
     
     //MARK: - Life cycle
-    init(viewModel: NewsDetailsViewModelProtocol) {
+    init(viewModel: any NewsDetailsViewModelType) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -42,16 +42,16 @@ class NewsDetailsViewController: UIViewController {
     
     private func setupUI() {
         view.backgroundColor = .systemBackground
-        navigationItem.title = viewModel.outputs.screenTitle
+        navigationItem.title = viewModel.output.screenTitle
         view.addSubview(tableView)
         tableView.fillSafeArea()
     }
     
     private func bindViewModel() {
         viewModel
-            .outputs
+            .output
             .data
-            .drive(tableView.rx.items(cellIdentifier: viewModel.cellIdentifier, cellType: NewsDetailsCell.self)) { (_, object, cell) in
+            .drive(tableView.rx.items(cellIdentifier: viewModel.output.cellIdentifier, cellType: NewsDetailsCell.self)) { (_, object, cell) in
                 cell.news = object
             }
             .disposed(by: disposeBag)

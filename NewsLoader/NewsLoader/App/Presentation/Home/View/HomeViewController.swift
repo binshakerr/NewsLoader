@@ -12,13 +12,13 @@ import RxCocoa
 class HomeViewController: UIViewController {
     
     //MARK: - Properties
-    private let viewModel: HomeViewModelProtocol
+    private let viewModel: any HomeViewModelType
     private let disposeBag = DisposeBag()
     private let coordinator: HomeCoordinator
     
     lazy var tableView: UITableView = {
         let table = UITableView()
-        table.register(UINib(nibName: viewModel.cellIdentifier, bundle: nil), forCellReuseIdentifier: viewModel.cellIdentifier)
+        table.register(UINib(nibName: viewModel.output.cellIdentifier, bundle: nil), forCellReuseIdentifier: viewModel.output.cellIdentifier)
         table.rowHeight = UITableView.automaticDimension
         table.estimatedRowHeight = 100
         table.refreshControl = refreshControl
@@ -27,7 +27,7 @@ class HomeViewController: UIViewController {
     lazy var refreshControl = UIRefreshControl()
     
     //MARK: - Life cycle
-    init(viewModel: HomeViewModelProtocol, coordinator: HomeCoordinator) {
+    init(viewModel: any HomeViewModelType, coordinator: HomeCoordinator) {
         self.viewModel = viewModel
         self.coordinator = coordinator
         super.init(nibName: nil, bundle: nil)
@@ -42,14 +42,14 @@ class HomeViewController: UIViewController {
         setupUI()
         bindInputs()
         bindOutputs()
-        viewModel.inputs.load.onNext(())
+        viewModel.input.load.onNext(())
     }
     
     //MARK: -
     
     private func setupUI() {
         view.backgroundColor = .systemBackground
-        navigationItem.title = viewModel.outputs.screenTitle
+        navigationItem.title = viewModel.output.screenTitle
         hideBackButtonTitle()
         view.addSubview(tableView)
         tableView.fillSafeArea()
@@ -57,7 +57,7 @@ class HomeViewController: UIViewController {
     
     private func bindOutputs() {
         viewModel
-            .outputs
+            .output
             .state
             .drive { [weak self] state in
                 guard let self = self, let state = state else { return }
@@ -69,7 +69,7 @@ class HomeViewController: UIViewController {
             .disposed(by: disposeBag)
         
         viewModel
-            .outputs
+            .output
             .error
             .drive { [weak self] message in
                 guard let self = self, let message = message else { return }
@@ -78,11 +78,11 @@ class HomeViewController: UIViewController {
             .disposed(by: disposeBag)
         
         viewModel
-            .outputs
+            .output
             .data
             .drive(tableView
                 .rx
-                .items(cellIdentifier: viewModel.cellIdentifier, cellType: NewsCell.self)) { (_, object, cell) in
+                .items(cellIdentifier: viewModel.output.cellIdentifier, cellType: NewsCell.self)) { (_, object, cell) in
                     cell.news = NewsCellViewModel(news: object)
                 }
                 .disposed(by: disposeBag)
@@ -101,7 +101,7 @@ class HomeViewController: UIViewController {
             .rx
             .controlEvent(.valueChanged)
             .subscribe { [weak self] _ in
-                self?.viewModel.reload.onNext(())
+                self?.viewModel.input.reload.onNext(())
             }
             .disposed(by: disposeBag)
     }

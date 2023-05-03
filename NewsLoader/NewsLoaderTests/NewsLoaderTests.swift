@@ -17,8 +17,8 @@ final class NewsLoaderTests: XCTestCase {
     var scheduler: TestScheduler!
     var disposeBag: DisposeBag!
     var popularNewsSuccessData: Data!
-    var homeViewModel: HomeViewModelProtocol!
-    var detailsViewModel: NewsDetailsViewModel!
+    var homeViewModel: (any HomeViewModelType)?
+    var detailsViewModel: (any NewsDetailsViewModelType)?
     var networkManager: NetworkManagerType!
     var newsRepository: MockNewsRepository!
     
@@ -40,9 +40,9 @@ final class NewsLoaderTests: XCTestCase {
     func test_HomeViewModel_InitialState() {
         homeViewModel = HomeViewModel(newsRepository: newsRepository)
 
-        XCTAssertTrue(try homeViewModel.outputs.data.toBlocking().first()?.count == 0)
-        XCTAssertEqual(homeViewModel.outputs.screenTitle, "Most Popular News")
-        XCTAssertEqual(homeViewModel.outputs.cellIdentifier, "NewsCell")
+        XCTAssertTrue(try homeViewModel?.output.data.toBlocking().first()?.count == 0)
+        XCTAssertEqual(homeViewModel?.output.screenTitle, "Most Popular News")
+        XCTAssertEqual(homeViewModel?.output.cellIdentifier, "NewsCell")
     }
 
     func test_PopularNews_Success() {
@@ -54,12 +54,12 @@ final class NewsLoaderTests: XCTestCase {
 
         // When
         let newsObserver = scheduler.createObserver([News].self)
-        homeViewModel.outputs.data
+        homeViewModel?.output.data
             .asObservable()
             .bind(to: newsObserver)
             .disposed(by: disposeBag)
         scheduler.createColdObservable([(.next(10, ()))])
-            .bind(to: homeViewModel.inputs.load)
+            .bind(to: (homeViewModel?.input.load)!)
             .disposed(by: disposeBag)
         scheduler.start()
 
@@ -77,9 +77,9 @@ final class NewsLoaderTests: XCTestCase {
         let mockNews = News(uri: nil, url: nil, id: nil, assetID: nil, source: nil, publishedDate: nil, updated: nil, section: nil, subsection: nil, nytdsection: nil, adxKeywords: nil, byline: nil, type: nil, title: nil, abstract: nil, desFacet: nil, orgFacet: nil, perFacet: nil, geoFacet: nil, media: nil, etaID: nil)
         detailsViewModel = NewsDetailsViewModel(news: mockNews)
 
-        XCTAssertTrue(try detailsViewModel.outputs.data.toBlocking().first()?.count == 1)
-        XCTAssertEqual(detailsViewModel.outputs.screenTitle, "News Details")
-        XCTAssertEqual(detailsViewModel.outputs.cellIdentifier, "NewsDetailsCell")
+        XCTAssertTrue(try detailsViewModel?.output.data.toBlocking().first()?.count == 1)
+        XCTAssertEqual(detailsViewModel?.output.screenTitle, "News Details")
+        XCTAssertEqual(detailsViewModel?.output.cellIdentifier, "NewsDetailsCell")
     }
     
 }
