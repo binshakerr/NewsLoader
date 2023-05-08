@@ -9,41 +9,42 @@ import Foundation
 import Alamofire
 
 protocol ParserType {
-    func parseData<T: Decodable>(_ result: AFDataResponse<Any>, completion: @escaping(Result<T, Error>) -> ())
+    func parseData<T: Decodable>(_ result: DataResponse<Data, AFError>, type: T.Type) async throws -> T
 }
 
 class Parser {
+    private let decoder: JSONDecoder
     
-    private let decoder = JSONDecoder()
-    
+    init() {
+        decoder = JSONDecoder()
+    }
 }
 
 
 extension Parser: ParserType {
     
-    func parseData<T: Decodable>(_ result: AFDataResponse<Any>, completion: @escaping(Result<T, Error>) -> ()) {
-        switch result.result {
+    func parseData<T: Decodable>(_ response: DataResponse<Data, AFError>, type: T.Type) async throws -> T {
+        switch response.result {
         case .success:
-            guard let data = result.data else { return }
+            guard let data = response.data else {
+                throw AppError(message: "No Data")
+            }
             do {
-                let result = try decoder.decode(T.self, from: data)
-                completion(.success(result))
+                return try decoder.decode(T.self, from: data)
             } catch let error {
                 print(error)
-                completion(.failure(error))
+                throw error
             }
         case .failure(let error):
-            guard let data = result.data else {
-                completion(.failure(error))
-                return
+            guard let data = response.data else {
+                throw error
             }
             do {
                 let errorResponse = try decoder.decode(ErrorResponse.self, from: data)
-                let error = NetworkError(errorResponse: errorResponse)
-                completion(.failure(error))
+                throw NetworkError(errorResponse: errorResponse)
             } catch let error {
                 print(error)
-                completion(.failure(error))
+                throw error
             }
         }
     }

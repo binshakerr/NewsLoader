@@ -11,11 +11,11 @@ struct News: Decodable {
     let uri: String?
     let url: String?
     let id, assetID: Int?
-    let source: Source?
+    let source: String?
     let publishedDate, updated, section, subsection: String?
     let nytdsection, adxKeywords: String?
     let byline: String?
-    let type: ResultType?
+    let type: String?
     let title, abstract: String?
     let desFacet, orgFacet, perFacet, geoFacet: [String]?
     let media: [Media]?

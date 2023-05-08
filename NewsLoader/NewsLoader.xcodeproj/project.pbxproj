@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		744F4760E630BD5788DDCF62 /* Pods_NewsLoader.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DD65D6720103775CFB403F6 /* Pods_NewsLoader.framework */; };
+		DC2851562A08DCE700414128 /* Observable+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2851552A08DCE700414128 /* Observable+Extensions.swift */; };
 		DC4B31C82A0264EC00CB924A /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC4B31C72A0264EC00CB924A /* ViewModelType.swift */; };
 		DC97CB8829FC38D300D46059 /* MockNewsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC97CB8729FC38D300D46059 /* MockNewsRepository.swift */; };
 		DC97CB8A29FC398800D46059 /* MockError.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC97CB8929FC398800D46059 /* MockError.swift */; };
@@ -35,11 +36,6 @@
 		DCEE367629FAFBED001BBCD3 /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEE367529FAFBED001BBCD3 /* News.swift */; };
 		DCEE367829FAFC3B001BBCD3 /* Media.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEE367729FAFC3B001BBCD3 /* Media.swift */; };
 		DCEE367A29FAFC84001BBCD3 /* MediaMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEE367929FAFC84001BBCD3 /* MediaMetadata.swift */; };
-		DCEE367C29FAFCBF001BBCD3 /* Format.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEE367B29FAFCBF001BBCD3 /* Format.swift */; };
-		DCEE367E29FAFCFF001BBCD3 /* Subtype.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEE367D29FAFCFF001BBCD3 /* Subtype.swift */; };
-		DCEE368029FAFD1F001BBCD3 /* MediaType.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEE367F29FAFD1F001BBCD3 /* MediaType.swift */; };
-		DCEE368229FAFD76001BBCD3 /* Source.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEE368129FAFD76001BBCD3 /* Source.swift */; };
-		DCEE368429FAFD9C001BBCD3 /* ResultType.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEE368329FAFD9C001BBCD3 /* ResultType.swift */; };
 		DCEE368F29FB00B2001BBCD3 /* EndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEE368929FB00B2001BBCD3 /* EndPoint.swift */; };
 		DCEE369029FB00B2001BBCD3 /* NetworkLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEE368A29FB00B2001BBCD3 /* NetworkLogger.swift */; };
 		DCEE369129FB00B2001BBCD3 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEE368B29FB00B2001BBCD3 /* NetworkManager.swift */; };
@@ -83,6 +79,7 @@
 		A7A9F1487D5A4ACEF60B9CAC /* Pods-NewsLoader.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NewsLoader.release.xcconfig"; path = "Target Support Files/Pods-NewsLoader/Pods-NewsLoader.release.xcconfig"; sourceTree = "<group>"; };
 		BCB1E4CC1FC0D325425D851D /* Pods-NewsLoader.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NewsLoader.debug.xcconfig"; path = "Target Support Files/Pods-NewsLoader/Pods-NewsLoader.debug.xcconfig"; sourceTree = "<group>"; };
 		D575221B12F962CF8F0A763D /* Pods-NewsLoaderTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NewsLoaderTests.debug.xcconfig"; path = "Target Support Files/Pods-NewsLoaderTests/Pods-NewsLoaderTests.debug.xcconfig"; sourceTree = "<group>"; };
+		DC2851552A08DCE700414128 /* Observable+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Observable+Extensions.swift"; sourceTree = "<group>"; };
 		DC4B31C72A0264EC00CB924A /* ViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
 		DC97CB8729FC38D300D46059 /* MockNewsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNewsRepository.swift; sourceTree = "<group>"; };
 		DC97CB8929FC398800D46059 /* MockError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockError.swift; sourceTree = "<group>"; };
@@ -108,11 +105,6 @@
 		DCEE367529FAFBED001BBCD3 /* News.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
 		DCEE367729FAFC3B001BBCD3 /* Media.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Media.swift; sourceTree = "<group>"; };
 		DCEE367929FAFC84001BBCD3 /* MediaMetadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaMetadata.swift; sourceTree = "<group>"; };
-		DCEE367B29FAFCBF001BBCD3 /* Format.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Format.swift; sourceTree = "<group>"; };
-		DCEE367D29FAFCFF001BBCD3 /* Subtype.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Subtype.swift; sourceTree = "<group>"; };
-		DCEE367F29FAFD1F001BBCD3 /* MediaType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaType.swift; sourceTree = "<group>"; };
-		DCEE368129FAFD76001BBCD3 /* Source.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Source.swift; sourceTree = "<group>"; };
-		DCEE368329FAFD9C001BBCD3 /* ResultType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultType.swift; sourceTree = "<group>"; };
 		DCEE368929FB00B2001BBCD3 /* EndPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EndPoint.swift; sourceTree = "<group>"; };
 		DCEE368A29FB00B2001BBCD3 /* NetworkLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkLogger.swift; sourceTree = "<group>"; };
 		DCEE368B29FB00B2001BBCD3 /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
@@ -310,6 +302,7 @@
 				DCEE364529FAF511001BBCD3 /* UIView+AutoLayout.swift */,
 				DCEE364229FAF511001BBCD3 /* UIView+Extensions.swift */,
 				DCEE364429FAF511001BBCD3 /* UIViewController+Extensions.swift */,
+				DC2851552A08DCE700414128 /* Observable+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -357,11 +350,6 @@
 				DCEE367529FAFBED001BBCD3 /* News.swift */,
 				DCEE367729FAFC3B001BBCD3 /* Media.swift */,
 				DCEE367929FAFC84001BBCD3 /* MediaMetadata.swift */,
-				DCEE367B29FAFCBF001BBCD3 /* Format.swift */,
-				DCEE367D29FAFCFF001BBCD3 /* Subtype.swift */,
-				DCEE367F29FAFD1F001BBCD3 /* MediaType.swift */,
-				DCEE368129FAFD76001BBCD3 /* Source.swift */,
-				DCEE368329FAFD9C001BBCD3 /* ResultType.swift */,
 				DCEE369929FB019F001BBCD3 /* ErrorResponse.swift */,
 				DCEE369B29FB01D1001BBCD3 /* NLError.swift */,
 			);
@@ -668,8 +656,7 @@
 				DC4B31C82A0264EC00CB924A /* ViewModelType.swift in Sources */,
 				DCEE36AF29FB2EFC001BBCD3 /* NewsDetailsViewController.swift in Sources */,
 				DCEE369029FB00B2001BBCD3 /* NetworkLogger.swift in Sources */,
-				DCEE368029FAFD1F001BBCD3 /* MediaType.swift in Sources */,
-				DCEE367E29FAFCFF001BBCD3 /* Subtype.swift in Sources */,
+				DC2851562A08DCE700414128 /* Observable+Extensions.swift in Sources */,
 				DCEE36A629FB2452001BBCD3 /* NewsCellViewModel.swift in Sources */,
 				DCEE369A29FB019F001BBCD3 /* ErrorResponse.swift in Sources */,
 				DCEE369229FB00B2001BBCD3 /* Parser.swift in Sources */,
@@ -694,14 +681,11 @@
 				DCEE360029FAF128001BBCD3 /* SceneDelegate.swift in Sources */,
 				DCEE367A29FAFC84001BBCD3 /* MediaMetadata.swift in Sources */,
 				DCEE36A329FB1C5A001BBCD3 /* NewsCell.swift in Sources */,
-				DCEE367C29FAFCBF001BBCD3 /* Format.swift in Sources */,
-				DCEE368229FAFD76001BBCD3 /* Source.swift in Sources */,
 				DCEE364629FAF511001BBCD3 /* UIView+Extensions.swift in Sources */,
 				DCEE364929FAF511001BBCD3 /* UIView+AutoLayout.swift in Sources */,
 				DCEE369429FB00B2001BBCD3 /* NetworkReachability.swift in Sources */,
 				DCEE368F29FB00B2001BBCD3 /* EndPoint.swift in Sources */,
 				DCEE369129FB00B2001BBCD3 /* NetworkManager.swift in Sources */,
-				DCEE368429FAFD9C001BBCD3 /* ResultType.swift in Sources */,
 				DCEE369729FB00CF001BBCD3 /* AppError.swift in Sources */,
 				DCEE363629FAF27F001BBCD3 /* HomeViewController.swift in Sources */,
 				DCEE36BD29FB3E40001BBCD3 /* DetailsCellViewModel.swift in Sources */,

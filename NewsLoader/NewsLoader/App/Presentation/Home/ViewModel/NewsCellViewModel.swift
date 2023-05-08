@@ -20,7 +20,7 @@ struct NewsCellViewModel {
         self.date = news.publishedDate ?? ""
         
         if let meta = news.media?.first?.mediaMetadata {
-            if let thumbMeta = meta.filter({ $0.format == .standardThumbnail }).first {
+            if let thumbMeta = meta.filter({ $0.format == "Standard Thumbnail" }).first {
                 if let url = URL(string: thumbMeta.url ?? "") {
                     self.thumbURL = url
                 }

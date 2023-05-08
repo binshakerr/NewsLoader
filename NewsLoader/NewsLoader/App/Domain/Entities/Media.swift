@@ -8,8 +8,8 @@
 import Foundation
 
 struct Media: Decodable {
-    let type: MediaType?
-    let subtype: Subtype?
+    let type: String?
+    let subtype: String?
     let caption, copyright: String?
     let approvedForSyndication: Int?
     let mediaMetadata: [MediaMetadata]?

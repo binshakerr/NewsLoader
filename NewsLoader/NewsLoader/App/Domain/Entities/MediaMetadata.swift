@@ -9,6 +9,6 @@ import Foundation
 
 struct MediaMetadata: Decodable {
     let url: String?
-    let format: Format?
+    let format: String?
     let height, width: Int?
 }

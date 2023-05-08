@@ -26,17 +26,18 @@ class NewsRepository {
 extension NewsRepository: NewsRepositoryType {
     
     func getMostPopular(period: Int) -> Observable<NewsContainer> {
-        return Observable.create { [weak self] observer in
-            let request = NewsService.mostPopular(period: period)
-            self?.networkManager.request(request, type: NewsContainer.self) { result in
-                switch result {
-                case .success(let response):
-                    observer.onNext(response)
-                case .failure(let error):
-                    observer.onError(error)
+        let endpoint = NewsService.mostPopular(period: period)
+        return Observable.create { observer in
+            let task = Task {
+                do {
+                    let result = try await self.networkManager.request(endpoint, type: NewsContainer.self)
+                    observer.on(.next(result))
+                    observer.on(.completed)
+                } catch {
+                    observer.on(.error(error))
                 }
             }
-            return Disposables.create()
+            return Disposables.create { task.cancel() }
         }
     }
 }

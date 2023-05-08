@@ -22,7 +22,7 @@ struct DetailsCellViewModel {
         self.description = news.abstract ?? ""
         
         if let meta = news.media?.first?.mediaMetadata {
-            if let imageMeta = meta.filter({ $0.format == .mediumThreeByTwo440 }).first {
+            if let imageMeta = meta.filter({ $0.format == "mediumThreeByTwo440" }).first {
                 if let url = URL(string: imageMeta.url ?? "") {
                     self.imageURL = url
                 }

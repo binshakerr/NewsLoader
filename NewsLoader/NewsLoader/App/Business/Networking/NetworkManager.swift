@@ -17,7 +17,7 @@ var customSessionManager: Session = {
 }()
 
 protocol NetworkManagerType {
-    func request<T: Decodable>(_ endPoint: EndPoint, type: T.Type, completion: @escaping(Result<T, Error>) -> ())
+    func request<T: Decodable>(_ endPoint: EndPoint, type: T.Type) async throws -> T
 }
 
 class NetworkManager {
@@ -34,31 +34,23 @@ class NetworkManager {
 
 extension NetworkManager: NetworkManagerType {
     
-    func request<T: Decodable>(_ endPoint: EndPoint, type: T.Type, completion: @escaping(Result<T, Error>) -> ()) {
+    func request<T: Decodable>(_ endPoint: EndPoint, type: T.Type) async throws -> T {
         
-        var urlRequest: URLRequest!
+        var urlRequest: URLRequest
         do {
             urlRequest = try endPoint.asURLRequest()
         } catch {
-            completion(.failure(error))
+            throw error
         }
         
         // Check Internet Connection
         if NetworkReachability.shared.status == .notReachable {
-            let error = AppError(message: "Please check your internet connectivity")
-            completion(.failure(error))
+            throw AppError(message: "Please check your internet connectivity")
         }
         
         // Make Request
-        session
-            .request(urlRequest)
-            .validate()
-            .responseJSON { [weak self] result in
-                self?.parser.parseData(result) { result in
-                    completion(result)
-                }
-            }
+        let task = session.request(urlRequest).validate().serializingData()
+        let response = await task.response
+        return try await parser.parseData(response, type: T.self)
     }
-    
-    
 }
