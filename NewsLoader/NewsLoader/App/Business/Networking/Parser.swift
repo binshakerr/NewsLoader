@@ -32,7 +32,7 @@ extension Parser: ParserType {
             do {
                 return try decoder.decode(T.self, from: data)
             } catch let error {
-                print(error)
+                debugPrint(error)
                 throw error
             }
         case .failure(let error):
@@ -43,7 +43,7 @@ extension Parser: ParserType {
                 let errorResponse = try decoder.decode(ErrorResponse.self, from: data)
                 throw NetworkError(errorResponse: errorResponse)
             } catch let error {
-                print(error)
+                debugPrint(error)
                 throw error
             }
         }

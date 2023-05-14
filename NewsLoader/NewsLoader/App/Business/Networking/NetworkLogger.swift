@@ -13,7 +13,7 @@ struct NetworkLogger: EventMonitor {
     let queue = DispatchQueue(label: "com.listloader.networklogger")
     
     func requestDidFinish(_ request: Request) {
-        print(request.description)
+        debugPrint(request.description)
     }
     
     func request<Value>(_ request: DataRequest, didParseResponse response: DataResponse<Value, AFError>) {
@@ -21,7 +21,7 @@ struct NetworkLogger: EventMonitor {
             return
         }
         if let json = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers) {
-            print(json)
+            debugPrint(json)
         }
     }
 }

@@ -27,10 +27,16 @@ class Utils {
                     let data = try Data(contentsOf: url)
                     return data
                 } catch let error {
-                    print("error: \(error)")
+                    debugPrint("error: \(error)")
                 }
             }
             return nil
         }
+    }
+    
+    static func debugPrint(_ items: Any...) {
+#if DEBUG
+        print(items)
+#endif
     }
 }

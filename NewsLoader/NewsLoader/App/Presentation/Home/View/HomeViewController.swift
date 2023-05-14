@@ -46,7 +46,7 @@ final class HomeViewController: UIViewController {
     }
     
     deinit {
-        print("DEINIT \(String(describing: self))")
+        debugPrint("DEINIT \(String(describing: self))")
     }
     
     //MARK: -

@@ -22,7 +22,7 @@ final class NetworkReachability {
             case .reachable(.ethernetOrWiFi):
                 NotificationCenter.default.post(name: .connectivityStatusChanged, object: nil, userInfo: ["status": true])
             case .unknown:
-                print("Unknown network state")
+                debugPrint("Unknown network state")
             }
         }
     }

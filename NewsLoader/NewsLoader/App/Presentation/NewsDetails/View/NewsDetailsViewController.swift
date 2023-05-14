@@ -41,7 +41,7 @@ final class NewsDetailsViewController: UIViewController {
     }
     
     deinit {
-        print("DEINIT \(String(describing: self))")
+        debugPrint("DEINIT \(String(describing: self))")
     }
     
     //MARK: -
