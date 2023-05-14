@@ -7,7 +7,7 @@
 
 import UIKit
 
-class NewsDetailsCell: UITableViewCell {
+final class NewsDetailsCell: UITableViewCell {
     
     @IBOutlet weak var detailsImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!

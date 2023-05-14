@@ -45,6 +45,10 @@ final class HomeViewController: UIViewController {
         viewModel.input.load.onNext(())
     }
     
+    deinit {
+        print("DEINIT \(String(describing: self))")
+    }
+    
     //MARK: -
     
     private func setupUI() {

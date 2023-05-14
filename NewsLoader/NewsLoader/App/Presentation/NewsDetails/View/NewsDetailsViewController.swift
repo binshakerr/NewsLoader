@@ -40,6 +40,11 @@ final class NewsDetailsViewController: UIViewController {
         bindViewModel()
     }
     
+    deinit {
+        print("DEINIT \(String(describing: self))")
+    }
+    
+    //MARK: -
     private func setupUI() {
         view.backgroundColor = .systemBackground
         navigationItem.title = viewModel.output.screenTitle

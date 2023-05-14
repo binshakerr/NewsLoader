@@ -51,11 +51,11 @@ struct HomeViewModel: HomeViewModelType {
     
     private func bindInputs() {
         loadMostPopularSubject.subscribe { _ in
-            self.fetchMostPopularNews()
+            fetchMostPopularNews()
         }.disposed(by: disposeBag)
         
         reloadSubject.subscribe { _ in 
-            self.refreshContent()
+            refreshContent()
         }.disposed(by: disposeBag)
     }
     
@@ -64,11 +64,11 @@ struct HomeViewModel: HomeViewModelType {
         newsRepository.getMostPopular(period: period).subscribe { result in
             switch result {
             case .success(let news):
-                self.stateSubject.accept(news.results?.count ?? 0 > 0 ? .populated : .empty)
-                self.dataSubject.accept(self.dataSubject.value + (news.results ?? []))
+                stateSubject.accept(news.results?.count ?? 0 > 0 ? .populated : .empty)
+                dataSubject.accept(dataSubject.value + (news.results ?? []))
             case .failure(let error):
-                self.stateSubject.accept(.error)
-                self.errorSubject.accept(error.localizedDescription)
+                stateSubject.accept(.error)
+                errorSubject.accept(error.localizedDescription)
             }
         }
         .disposed(by: disposeBag)
