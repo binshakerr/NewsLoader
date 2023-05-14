@@ -8,9 +8,9 @@
 import Foundation
 import Alamofire
 
-class NetworkReachability {
+final class NetworkReachability {
     static let shared = NetworkReachability()
-    let reachabilityManager = NetworkReachabilityManager(host: "www.google.com")
+    private let reachabilityManager = NetworkReachabilityManager(host: "www.google.com")
     
     func startNetworkMonitoring() {
         reachabilityManager?.startListening { status in

@@ -14,7 +14,7 @@ protocol HomeViewModelType: ViewModelType {
     var output: HomeViewModel.Output { get }
 }
 
-final class HomeViewModel: HomeViewModelType {
+struct HomeViewModel: HomeViewModelType {
     
     var input: Input
     var output: Output
@@ -50,19 +50,18 @@ final class HomeViewModel: HomeViewModelType {
     }
     
     private func bindInputs() {
-        loadMostPopularSubject.subscribe { [weak self] _ in
-            self?.fetchMostPopularNews()
+        loadMostPopularSubject.subscribe { _ in
+            self.fetchMostPopularNews()
         }.disposed(by: disposeBag)
         
-        reloadSubject.subscribe { [weak self] _ in
-            self?.refreshContent()
+        reloadSubject.subscribe { _ in 
+            self.refreshContent()
         }.disposed(by: disposeBag)
     }
     
     private func fetchMostPopularNews() {
         stateSubject.accept(.loading)
-        newsRepository.getMostPopular(period: period).subscribe { [weak self] result in
-            guard let self = self else { return }
+        newsRepository.getMostPopular(period: period).subscribe { result in
             switch result {
             case .success(let news):
                 self.stateSubject.accept(news.results?.count ?? 0 > 0 ? .populated : .empty)

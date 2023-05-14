@@ -9,11 +9,11 @@ import Foundation
 import RxSwift
 @testable import NewsLoader
 
-class MockNewsRepository: NewsRepositoryType {
+struct MockNewsRepository: NewsRepositoryType {
    
     var newsStubData: NewsContainer?
     
-    func getMostPopular(period: Int) -> Observable<NewsContainer> {
+    func getMostPopular(period: Int) -> Single<NewsContainer> {
         if let newsItem = newsStubData {
             return .just(newsItem)
         }

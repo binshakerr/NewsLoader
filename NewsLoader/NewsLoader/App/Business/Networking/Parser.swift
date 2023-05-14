@@ -12,7 +12,7 @@ protocol ParserType {
     func parseData<T: Decodable>(_ result: DataResponse<Data, AFError>, type: T.Type) async throws -> T
 }
 
-class Parser {
+struct Parser {
     private let decoder: JSONDecoder
     
     init() {

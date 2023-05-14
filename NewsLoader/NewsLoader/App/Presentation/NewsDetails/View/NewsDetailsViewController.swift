@@ -9,7 +9,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class NewsDetailsViewController: UIViewController {
+final class NewsDetailsViewController: UIViewController {
     
     //MARK: - Properties
     private let viewModel: any NewsDetailsViewModelType

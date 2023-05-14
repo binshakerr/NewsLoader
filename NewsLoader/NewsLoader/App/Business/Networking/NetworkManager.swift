@@ -20,7 +20,7 @@ protocol NetworkManagerType {
     func request<T: Decodable>(_ endPoint: EndPoint, type: T.Type) async throws -> T
 }
 
-class NetworkManager {
+final class NetworkManager {
     
     private let session: Session
     private let parser: ParserType

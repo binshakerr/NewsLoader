@@ -14,7 +14,7 @@ protocol NewsDetailsViewModelType: ViewModelType {
     var output: NewsDetailsViewModel.Output { get }
 }
 
-final class NewsDetailsViewModel: NewsDetailsViewModelType {
+struct NewsDetailsViewModel: NewsDetailsViewModelType {
     
     var input: Input
     var output: Output

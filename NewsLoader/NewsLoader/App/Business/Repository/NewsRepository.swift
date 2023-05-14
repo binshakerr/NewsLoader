@@ -13,7 +13,7 @@ protocol NewsRepositoryType {
 }
 
 
-class NewsRepository {
+struct NewsRepository {
     
     private let networkManager: NetworkManagerType
     

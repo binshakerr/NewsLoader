@@ -8,7 +8,7 @@
 import Foundation
 import Alamofire
 
-class NetworkLogger: EventMonitor {
+struct NetworkLogger: EventMonitor {
     
     let queue = DispatchQueue(label: "com.listloader.networklogger")
     
