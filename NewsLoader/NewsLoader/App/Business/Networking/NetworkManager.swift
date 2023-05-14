@@ -50,7 +50,6 @@ extension NetworkManager: NetworkManagerType {
         
         // Make Request
         let task = session.request(urlRequest).validate().serializingData()
-        let response = await task.response
-        return try await parser.parseData(response, type: T.self)
+        return try await parser.parseData(task.response, type: T.self)
     }
 }

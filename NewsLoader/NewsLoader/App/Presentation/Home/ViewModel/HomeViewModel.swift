@@ -61,17 +61,18 @@ final class HomeViewModel: HomeViewModelType {
     
     private func fetchMostPopularNews() {
         stateSubject.accept(.loading)
-        newsRepository.getMostPopular(period: period)
-            .subscribe(onNext: { [weak self] response in
-                guard let self = self else { return }
-                self.stateSubject.accept(response.results?.count ?? 0 > 0 ? .populated : .empty)
-                self.dataSubject.accept(self.dataSubject.value + (response.results ?? []))
-            }, onError: { [weak self] error in
-                guard let self = self else { return }
+        newsRepository.getMostPopular(period: period).subscribe { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case .success(let news):
+                self.stateSubject.accept(news.results?.count ?? 0 > 0 ? .populated : .empty)
+                self.dataSubject.accept(self.dataSubject.value + (news.results ?? []))
+            case .failure(let error):
                 self.stateSubject.accept(.error)
                 self.errorSubject.accept(error.localizedDescription)
-            })
-            .disposed(by: disposeBag)
+            }
+        }
+        .disposed(by: disposeBag)
     }
     
     private func refreshContent() {

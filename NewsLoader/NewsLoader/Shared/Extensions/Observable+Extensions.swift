@@ -11,17 +11,18 @@ extension Observable {
         
     //create shorthand version for returning observable from non-reactive function with async await support
     static func createAsync(_ function: @escaping () async throws -> Element) -> Observable<Element> {
-        Observable.create { observer in
+        .create { observer in
             let task = Task {
                 do {
-                    let result = try await function()
-                    observer.on(.next(result))
+                    observer.on(.next(try await function()))
                     observer.on(.completed)
                 } catch {
                     observer.on(.error(error))
                 }
             }
-            return Disposables.create { task.cancel() }
+            return Disposables.create {
+                task.cancel()
+            }
         }
     }
 }
