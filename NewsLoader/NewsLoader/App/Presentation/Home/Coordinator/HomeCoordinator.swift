@@ -16,6 +16,10 @@ class HomeCoordinator: Coordinator {
         self.navigationController = navigationController
     }
     
+    deinit {
+        debugPrint("DEINIT \(String(describing: self))")
+    }
+    
     func start() {
         navigationController.setViewControllers([makeHomeScreen()], animated: true)
     }

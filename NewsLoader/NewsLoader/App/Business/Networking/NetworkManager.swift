@@ -30,6 +30,10 @@ final class NetworkManager {
         self.session = session
         self.parser = parser
     }
+    
+    deinit {
+        debugPrint("DEINIT \(String(describing: self))")
+    }
 }
 
 extension NetworkManager: NetworkManagerType {

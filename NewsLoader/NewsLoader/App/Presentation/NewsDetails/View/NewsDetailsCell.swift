@@ -15,6 +15,10 @@ final class NewsDetailsCell: UITableViewCell {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var detailsLabel: UILabel!
     
+    deinit {
+        debugPrint("DEINIT \(String(describing: self))")
+    }
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         selectionStyle = .none

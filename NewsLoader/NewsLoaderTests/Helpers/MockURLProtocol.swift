@@ -8,9 +8,13 @@
 import Foundation
 
 final class MockURLProtocol: URLProtocol {
-    static var stubResponseData: Data?
     
+    static var stubResponseData: Data?
     private(set) var activeTask: URLSessionTask?
+    
+    deinit {
+        debugPrint("DEINIT \(String(describing: self))")
+    }
     
     override class func canInit(with request: URLRequest) -> Bool {
         return true
@@ -29,5 +33,7 @@ final class MockURLProtocol: URLProtocol {
         self.client?.urlProtocolDidFinishLoading(self)
     }
     
-    override func stopLoading() {}
+    override func stopLoading() {
+        
+    }
 }

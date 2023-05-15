@@ -12,6 +12,12 @@ final class NetworkReachability {
     static let shared = NetworkReachability()
     private let reachabilityManager = NetworkReachabilityManager(host: "www.google.com")
     
+    private init() {}
+    
+    deinit {
+        debugPrint("DEINIT \(String(describing: self))")
+    }
+    
     func startNetworkMonitoring() {
         reachabilityManager?.startListening { status in
             switch status {

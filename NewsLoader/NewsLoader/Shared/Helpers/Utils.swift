@@ -9,6 +9,10 @@ import Foundation
 
 class Utils {
     
+    deinit {
+        print("DEINIT \(String(describing: self))")
+    }
+    
     enum MockResponseType: String {
         case successNewsData = "NewsMock"
         

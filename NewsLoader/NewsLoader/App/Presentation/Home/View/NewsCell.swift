@@ -18,6 +18,10 @@ final class NewsCell: UITableViewCell {
         super.awakeFromNib()
         thumbnailImageView.makeRounded()
     }
+    
+    deinit {
+        debugPrint("DEINIT \(String(describing: self))")
+    }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)

@@ -16,6 +16,10 @@ final class AppCoordinator: Coordinator {
         self.window = window
     }
     
+    deinit {
+        debugPrint("DEINIT \(String(describing: self))")
+    }
+    
     func start() {
         let navigation = UINavigationController()
         makeHomeCoordinator(navigation)
