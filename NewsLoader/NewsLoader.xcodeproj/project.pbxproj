@@ -487,10 +487,10 @@
 			);
 			mainGroup = DCEE35F129FAF128001BBCD3;
 			packageReferences = (
-				DCEE364F29FAF5CD001BBCD3 /* XCRemoteSwiftPackageReference "Kingfisher" */,
-				DCEE365229FAF5DB001BBCD3 /* XCRemoteSwiftPackageReference "Alamofire" */,
-				DCEE365529FAF606001BBCD3 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
-				DCEE366129FAF6ED001BBCD3 /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */,
+				DCEE364F29FAF5CD001BBCD3 /* XCRemoteSwiftPackageReference "Kingfisher.git" */,
+				DCEE365229FAF5DB001BBCD3 /* XCRemoteSwiftPackageReference "Alamofire.git" */,
+				DCEE365529FAF606001BBCD3 /* XCRemoteSwiftPackageReference "IQKeyboardManager.git" */,
+				DCEE366129FAF6ED001BBCD3 /* XCRemoteSwiftPackageReference "NVActivityIndicatorView.git" */,
 			);
 			productRefGroup = DCEE35FB29FAF128001BBCD3 /* Products */;
 			projectDirPath = "";
@@ -854,7 +854,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		DCEE364F29FAF5CD001BBCD3 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+		DCEE364F29FAF5CD001BBCD3 /* XCRemoteSwiftPackageReference "Kingfisher.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
 			requirement = {
@@ -862,7 +862,7 @@
 				minimumVersion = 7.0.0;
 			};
 		};
-		DCEE365229FAF5DB001BBCD3 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+		DCEE365229FAF5DB001BBCD3 /* XCRemoteSwiftPackageReference "Alamofire.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
 			requirement = {
@@ -870,7 +870,7 @@
 				minimumVersion = 5.0.0;
 			};
 		};
-		DCEE365529FAF606001BBCD3 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
+		DCEE365529FAF606001BBCD3 /* XCRemoteSwiftPackageReference "IQKeyboardManager.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/hackiftekhar/IQKeyboardManager.git";
 			requirement = {
@@ -879,7 +879,7 @@
 				minimumVersion = 6.0.0;
 			};
 		};
-		DCEE366129FAF6ED001BBCD3 /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */ = {
+		DCEE366129FAF6ED001BBCD3 /* XCRemoteSwiftPackageReference "NVActivityIndicatorView.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ninjaprox/NVActivityIndicatorView.git";
 			requirement = {
@@ -892,27 +892,27 @@
 /* Begin XCSwiftPackageProductDependency section */
 		DCEE365029FAF5CD001BBCD3 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = DCEE364F29FAF5CD001BBCD3 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			package = DCEE364F29FAF5CD001BBCD3 /* XCRemoteSwiftPackageReference "Kingfisher.git" */;
 			productName = Kingfisher;
 		};
 		DCEE365329FAF5DB001BBCD3 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = DCEE365229FAF5DB001BBCD3 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			package = DCEE365229FAF5DB001BBCD3 /* XCRemoteSwiftPackageReference "Alamofire.git" */;
 			productName = Alamofire;
 		};
 		DCEE365629FAF606001BBCD3 /* IQKeyboardManagerSwift */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = DCEE365529FAF606001BBCD3 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
+			package = DCEE365529FAF606001BBCD3 /* XCRemoteSwiftPackageReference "IQKeyboardManager.git" */;
 			productName = IQKeyboardManagerSwift;
 		};
 		DCEE366229FAF6ED001BBCD3 /* NVActivityIndicatorView */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = DCEE366129FAF6ED001BBCD3 /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */;
+			package = DCEE366129FAF6ED001BBCD3 /* XCRemoteSwiftPackageReference "NVActivityIndicatorView.git" */;
 			productName = NVActivityIndicatorView;
 		};
 		DCEE366429FAF6ED001BBCD3 /* NVActivityIndicatorViewExtended */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = DCEE366129FAF6ED001BBCD3 /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */;
+			package = DCEE366129FAF6ED001BBCD3 /* XCRemoteSwiftPackageReference "NVActivityIndicatorView.git" */;
 			productName = NVActivityIndicatorViewExtended;
 		};
 /* End XCSwiftPackageProductDependency section */
