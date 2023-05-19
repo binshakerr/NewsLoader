@@ -34,7 +34,7 @@ final class NewsCell: UITableViewCell {
             authorLabel.text = news.author
             dateLabel.text = news.date
             if let url = news.thumbURL {
-                thumbnailImageView.loadImage(url: url)
+                thumbnailImageView.loadDownsampledImage(url: url)
             }
         }
     }

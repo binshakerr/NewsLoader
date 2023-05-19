@@ -10,19 +10,17 @@ import Combine
 
 final class NewsDetailsViewController: UIViewController {
     
+    //MARK: - Outlets
+    @IBOutlet weak var detailsImageView: UIImageView!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var authorLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var detailsLabel: UILabel!
+    
     //MARK: - Properties
     private let viewModel: any NewsDetailsViewModelType
     private var cancellables = Set<AnyCancellable>()
-    
-    lazy var tableView: UITableView = {
-        let table = UITableView()
-        table.dataSource = self
-        table.register(UINib(nibName: viewModel.output.cellIdentifier, bundle: nil), forCellReuseIdentifier: viewModel.output.cellIdentifier)
-        table.rowHeight = UITableView.automaticDimension
-        table.estimatedRowHeight = 500
-        table.separatorStyle = .none
-        return table
-    }()
+    private var news: DetailsCellViewModel!
     
     //MARK: - Life cycle
     init(viewModel: any NewsDetailsViewModelType) {
@@ -48,8 +46,6 @@ final class NewsDetailsViewController: UIViewController {
     private func setupUI() {
         view.backgroundColor = .systemBackground
         navigationItem.title = viewModel.output.screenTitle
-        view.addSubview(tableView)
-        tableView.fillSafeArea()
     }
     
     private func bindViewModel() {
@@ -57,25 +53,27 @@ final class NewsDetailsViewController: UIViewController {
             .output
             .data
             .receive(on: DispatchQueue.main)
-            .sink { [weak self] _ in
-                self?.tableView.reloadData()
+            .sink { [weak self] news in
+                self?.news = news.first
+                self?.populateView()
             }
             .store(in: &cancellables)
     }
-}
-
-
-extension NewsDetailsViewController: UITableViewDataSource {
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        viewModel.output.data.value.count
+    private func populateView() {
+        titleLabel.text = news.title
+        authorLabel.text = news.author
+        dateLabel.text = news.date
+        detailsLabel.text = news.description
+        if let url = news.imageURL {
+            detailsImageView.loadDownsampledImage(url: url)
+        }
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: viewModel.output.cellIdentifier, for: indexPath) as? NewsDetailsCell else {
-            return UITableViewCell()
+    //MARK: - Actions
+    @IBAction func viewStoryButtonPressed(_ sender: Any) {
+        if let url = news.fullURL {
+            UIApplication.shared.open(url)
         }
-        cell.news = viewModel.output.data.value.first
-        return cell
     }
 }
