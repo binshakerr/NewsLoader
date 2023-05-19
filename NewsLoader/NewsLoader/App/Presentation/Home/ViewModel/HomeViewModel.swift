@@ -23,7 +23,7 @@ struct HomeViewModel: HomeViewModelType {
         let load: AnyObserver<Void>
         let reload: AnyObserver<Void>
     }
-
+    
     struct Output {
         let data: Driver<[News]>
         let state: Driver<DataState?>
@@ -54,24 +54,20 @@ struct HomeViewModel: HomeViewModelType {
             fetchMostPopularNews()
         }.disposed(by: disposeBag)
         
-        reloadSubject.subscribe { _ in 
+        reloadSubject.subscribe { _ in
             refreshContent()
         }.disposed(by: disposeBag)
     }
     
     private func fetchMostPopularNews() {
         stateSubject.accept(.loading)
-        newsRepository.getMostPopular(period: period).subscribe { result in
-            switch result {
-            case .success(let news):
-                stateSubject.accept(news.results?.count ?? 0 > 0 ? .populated : .empty)
-                dataSubject.accept(dataSubject.value + (news.results ?? []))
-            case .failure(let error):
-                stateSubject.accept(.error)
-                errorSubject.accept(error.localizedDescription)
-            }
-        }
-        .disposed(by: disposeBag)
+        newsRepository.getMostPopular(period: period).subscribe(onNext: { news in
+            stateSubject.accept(news.results?.count ?? 0 > 0 ? .populated : .empty)
+            dataSubject.accept(dataSubject.value + (news.results ?? []))
+        }, onError: { error in
+            stateSubject.accept(.error)
+            errorSubject.accept(error.localizedDescription)
+        }).disposed(by: disposeBag)
     }
     
     private func refreshContent() {
