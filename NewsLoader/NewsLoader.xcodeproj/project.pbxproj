@@ -7,28 +7,26 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DC45D7CC2A180D1D00663972 /* NewsLoaderApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC45D7CB2A180D1D00663972 /* NewsLoaderApp.swift */; };
+		DC45D7CE2A1810AB00663972 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC45D7CD2A1810AB00663972 /* HomeView.swift */; };
 		DC4B31C82A0264EC00CB924A /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC4B31C72A0264EC00CB924A /* ViewModelType.swift */; };
 		DC97CB8829FC38D300D46059 /* MockNewsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC97CB8729FC38D300D46059 /* MockNewsRepository.swift */; };
 		DC97CB8A29FC398800D46059 /* MockError.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC97CB8929FC398800D46059 /* MockError.swift */; };
 		DCE35DA02A1800FD0093B80E /* NewsDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DCE35D9F2A1800FD0093B80E /* NewsDetailsViewController.xib */; };
 		DCEE35FE29FAF128001BBCD3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEE35FD29FAF128001BBCD3 /* AppDelegate.swift */; };
-		DCEE360029FAF128001BBCD3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEE35FF29FAF128001BBCD3 /* SceneDelegate.swift */; };
 		DCEE360729FAF129001BBCD3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DCEE360629FAF129001BBCD3 /* Assets.xcassets */; };
 		DCEE360A29FAF129001BBCD3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DCEE360829FAF129001BBCD3 /* LaunchScreen.storyboard */; };
 		DCEE361529FAF129001BBCD3 /* NewsLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEE361429FAF129001BBCD3 /* NewsLoaderTests.swift */; };
 		DCEE363629FAF27F001BBCD3 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEE363429FAF27F001BBCD3 /* HomeViewController.swift */; };
-		DCEE363929FAF38A001BBCD3 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEE363829FAF38A001BBCD3 /* AppCoordinator.swift */; };
 		DCEE363F29FAF428001BBCD3 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEE363C29FAF428001BBCD3 /* Coordinator.swift */; };
 		DCEE364129FAF428001BBCD3 /* DataState.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEE363E29FAF428001BBCD3 /* DataState.swift */; };
 		DCEE364629FAF511001BBCD3 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEE364229FAF511001BBCD3 /* UIView+Extensions.swift */; };
 		DCEE364729FAF511001BBCD3 /* UIImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEE364329FAF511001BBCD3 /* UIImageView+Extensions.swift */; };
 		DCEE364829FAF511001BBCD3 /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEE364429FAF511001BBCD3 /* UIViewController+Extensions.swift */; };
 		DCEE364929FAF511001BBCD3 /* UIView+AutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEE364529FAF511001BBCD3 /* UIView+AutoLayout.swift */; };
-		DCEE364C29FAF55B001BBCD3 /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEE364B29FAF55B001BBCD3 /* HomeCoordinator.swift */; };
 		DCEE364E29FAF568001BBCD3 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEE364D29FAF568001BBCD3 /* HomeViewModel.swift */; };
 		DCEE365129FAF5CD001BBCD3 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = DCEE365029FAF5CD001BBCD3 /* Kingfisher */; };
 		DCEE365429FAF5DB001BBCD3 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = DCEE365329FAF5DB001BBCD3 /* Alamofire */; };
-		DCEE365729FAF606001BBCD3 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = DCEE365629FAF606001BBCD3 /* IQKeyboardManagerSwift */; };
 		DCEE366329FAF6ED001BBCD3 /* NVActivityIndicatorView in Frameworks */ = {isa = PBXBuildFile; productRef = DCEE366229FAF6ED001BBCD3 /* NVActivityIndicatorView */; };
 		DCEE366529FAF6ED001BBCD3 /* NVActivityIndicatorViewExtended in Frameworks */ = {isa = PBXBuildFile; productRef = DCEE366429FAF6ED001BBCD3 /* NVActivityIndicatorViewExtended */; };
 		DCEE367429FAFBB6001BBCD3 /* NewsContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEE367329FAFBB6001BBCD3 /* NewsContainer.swift */; };
@@ -70,27 +68,26 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		DC45D7CB2A180D1D00663972 /* NewsLoaderApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsLoaderApp.swift; sourceTree = "<group>"; };
+		DC45D7CD2A1810AB00663972 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		DC4B31C72A0264EC00CB924A /* ViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
 		DC97CB8729FC38D300D46059 /* MockNewsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNewsRepository.swift; sourceTree = "<group>"; };
 		DC97CB8929FC398800D46059 /* MockError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockError.swift; sourceTree = "<group>"; };
 		DCE35D9F2A1800FD0093B80E /* NewsDetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewsDetailsViewController.xib; sourceTree = "<group>"; };
 		DCEE35FA29FAF128001BBCD3 /* NewsLoader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NewsLoader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCEE35FD29FAF128001BBCD3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		DCEE35FF29FAF128001BBCD3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		DCEE360629FAF129001BBCD3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DCEE360929FAF129001BBCD3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DCEE360B29FAF129001BBCD3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DCEE361029FAF129001BBCD3 /* NewsLoaderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NewsLoaderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCEE361429FAF129001BBCD3 /* NewsLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsLoaderTests.swift; sourceTree = "<group>"; };
 		DCEE363429FAF27F001BBCD3 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		DCEE363829FAF38A001BBCD3 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		DCEE363C29FAF428001BBCD3 /* Coordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		DCEE363E29FAF428001BBCD3 /* DataState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataState.swift; sourceTree = "<group>"; };
 		DCEE364229FAF511001BBCD3 /* UIView+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		DCEE364329FAF511001BBCD3 /* UIImageView+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extensions.swift"; sourceTree = "<group>"; };
 		DCEE364429FAF511001BBCD3 /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
 		DCEE364529FAF511001BBCD3 /* UIView+AutoLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+AutoLayout.swift"; sourceTree = "<group>"; };
-		DCEE364B29FAF55B001BBCD3 /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
 		DCEE364D29FAF568001BBCD3 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		DCEE367329FAFBB6001BBCD3 /* NewsContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsContainer.swift; sourceTree = "<group>"; };
 		DCEE367529FAFBED001BBCD3 /* News.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
@@ -129,7 +126,6 @@
 				DCEE366329FAF6ED001BBCD3 /* NVActivityIndicatorView in Frameworks */,
 				DCEE365129FAF5CD001BBCD3 /* Kingfisher in Frameworks */,
 				DCEE365429FAF5DB001BBCD3 /* Alamofire in Frameworks */,
-				DCEE365729FAF606001BBCD3 /* IQKeyboardManagerSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -205,8 +201,6 @@
 			isa = PBXGroup;
 			children = (
 				DCEE35FD29FAF128001BBCD3 /* AppDelegate.swift */,
-				DCEE35FF29FAF128001BBCD3 /* SceneDelegate.swift */,
-				DCEE363829FAF38A001BBCD3 /* AppCoordinator.swift */,
 				DCEE360B29FAF129001BBCD3 /* Info.plist */,
 			);
 			path = Configuration;
@@ -233,7 +227,6 @@
 		DCEE363129FAF255001BBCD3 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				DCEE364A29FAF548001BBCD3 /* Coordinator */,
 				DCEE363329FAF266001BBCD3 /* ViewModel */,
 				DCEE363229FAF25C001BBCD3 /* View */,
 			);
@@ -246,6 +239,7 @@
 				DCEE363429FAF27F001BBCD3 /* HomeViewController.swift */,
 				DCEE36A129FB1C5A001BBCD3 /* NewsCell.swift */,
 				DCEE36A229FB1C5A001BBCD3 /* NewsCell.xib */,
+				DC45D7CD2A1810AB00663972 /* HomeView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -281,19 +275,12 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		DCEE364A29FAF548001BBCD3 /* Coordinator */ = {
-			isa = PBXGroup;
-			children = (
-				DCEE364B29FAF55B001BBCD3 /* HomeCoordinator.swift */,
-			);
-			path = Coordinator;
-			sourceTree = "<group>";
-		};
 		DCEE366F29FAF78B001BBCD3 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
 				DCEE36A729FB2EAF001BBCD3 /* NewsDetails */,
 				DCEE363129FAF255001BBCD3 /* Home */,
+				DC45D7CB2A180D1D00663972 /* NewsLoaderApp.swift */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -432,7 +419,6 @@
 			packageProductDependencies = (
 				DCEE365029FAF5CD001BBCD3 /* Kingfisher */,
 				DCEE365329FAF5DB001BBCD3 /* Alamofire */,
-				DCEE365629FAF606001BBCD3 /* IQKeyboardManagerSwift */,
 				DCEE366229FAF6ED001BBCD3 /* NVActivityIndicatorView */,
 				DCEE366429FAF6ED001BBCD3 /* NVActivityIndicatorViewExtended */,
 			);
@@ -487,10 +473,9 @@
 			);
 			mainGroup = DCEE35F129FAF128001BBCD3;
 			packageReferences = (
-				DCEE364F29FAF5CD001BBCD3 /* XCRemoteSwiftPackageReference "Kingfisher.git" */,
-				DCEE365229FAF5DB001BBCD3 /* XCRemoteSwiftPackageReference "Alamofire.git" */,
-				DCEE365529FAF606001BBCD3 /* XCRemoteSwiftPackageReference "IQKeyboardManager.git" */,
-				DCEE366129FAF6ED001BBCD3 /* XCRemoteSwiftPackageReference "NVActivityIndicatorView.git" */,
+				DCEE364F29FAF5CD001BBCD3 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				DCEE365229FAF5DB001BBCD3 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				DCEE366129FAF6ED001BBCD3 /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */,
 			);
 			productRefGroup = DCEE35FB29FAF128001BBCD3 /* Products */;
 			projectDirPath = "";
@@ -535,7 +520,6 @@
 				DCEE36A629FB2452001BBCD3 /* NewsCellViewModel.swift in Sources */,
 				DCEE369A29FB019F001BBCD3 /* ErrorResponse.swift in Sources */,
 				DCEE369229FB00B2001BBCD3 /* Parser.swift in Sources */,
-				DCEE363929FAF38A001BBCD3 /* AppCoordinator.swift in Sources */,
 				DCEE364829FAF511001BBCD3 /* UIViewController+Extensions.swift in Sources */,
 				DCEE367629FAFBED001BBCD3 /* News.swift in Sources */,
 				DCEE364129FAF428001BBCD3 /* DataState.swift in Sources */,
@@ -544,7 +528,6 @@
 				DCEE369C29FB01D1001BBCD3 /* NLError.swift in Sources */,
 				DCEE36C329FBA896001BBCD3 /* Utils.swift in Sources */,
 				DCEE367829FAFC3B001BBCD3 /* Media.swift in Sources */,
-				DCEE364C29FAF55B001BBCD3 /* HomeCoordinator.swift in Sources */,
 				DCEE35FE29FAF128001BBCD3 /* AppDelegate.swift in Sources */,
 				DCEE363F29FAF428001BBCD3 /* Coordinator.swift in Sources */,
 				DCEE367429FAFBB6001BBCD3 /* NewsContainer.swift in Sources */,
@@ -552,8 +535,9 @@
 				DCEE364E29FAF568001BBCD3 /* HomeViewModel.swift in Sources */,
 				DCEE36AC29FB2EDE001BBCD3 /* NewsDetailsViewModel.swift in Sources */,
 				DCEE369329FB00B2001BBCD3 /* Enums.swift in Sources */,
+				DC45D7CE2A1810AB00663972 /* HomeView.swift in Sources */,
+				DC45D7CC2A180D1D00663972 /* NewsLoaderApp.swift in Sources */,
 				DCEE369E29FB02B1001BBCD3 /* NewsRepository.swift in Sources */,
-				DCEE360029FAF128001BBCD3 /* SceneDelegate.swift in Sources */,
 				DCEE367A29FAFC84001BBCD3 /* MediaMetadata.swift in Sources */,
 				DCEE36A329FB1C5A001BBCD3 /* NewsCell.swift in Sources */,
 				DCEE364629FAF511001BBCD3 /* UIView+Extensions.swift in Sources */,
@@ -854,7 +838,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		DCEE364F29FAF5CD001BBCD3 /* XCRemoteSwiftPackageReference "Kingfisher.git" */ = {
+		DCEE364F29FAF5CD001BBCD3 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
 			requirement = {
@@ -862,7 +846,7 @@
 				minimumVersion = 7.0.0;
 			};
 		};
-		DCEE365229FAF5DB001BBCD3 /* XCRemoteSwiftPackageReference "Alamofire.git" */ = {
+		DCEE365229FAF5DB001BBCD3 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
 			requirement = {
@@ -870,16 +854,7 @@
 				minimumVersion = 5.0.0;
 			};
 		};
-		DCEE365529FAF606001BBCD3 /* XCRemoteSwiftPackageReference "IQKeyboardManager.git" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/hackiftekhar/IQKeyboardManager.git";
-			requirement = {
-				kind = versionRange;
-				maximumVersion = 7.0.0;
-				minimumVersion = 6.0.0;
-			};
-		};
-		DCEE366129FAF6ED001BBCD3 /* XCRemoteSwiftPackageReference "NVActivityIndicatorView.git" */ = {
+		DCEE366129FAF6ED001BBCD3 /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ninjaprox/NVActivityIndicatorView.git";
 			requirement = {
@@ -892,27 +867,22 @@
 /* Begin XCSwiftPackageProductDependency section */
 		DCEE365029FAF5CD001BBCD3 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = DCEE364F29FAF5CD001BBCD3 /* XCRemoteSwiftPackageReference "Kingfisher.git" */;
+			package = DCEE364F29FAF5CD001BBCD3 /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
 		};
 		DCEE365329FAF5DB001BBCD3 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = DCEE365229FAF5DB001BBCD3 /* XCRemoteSwiftPackageReference "Alamofire.git" */;
+			package = DCEE365229FAF5DB001BBCD3 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
-		};
-		DCEE365629FAF606001BBCD3 /* IQKeyboardManagerSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = DCEE365529FAF606001BBCD3 /* XCRemoteSwiftPackageReference "IQKeyboardManager.git" */;
-			productName = IQKeyboardManagerSwift;
 		};
 		DCEE366229FAF6ED001BBCD3 /* NVActivityIndicatorView */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = DCEE366129FAF6ED001BBCD3 /* XCRemoteSwiftPackageReference "NVActivityIndicatorView.git" */;
+			package = DCEE366129FAF6ED001BBCD3 /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */;
 			productName = NVActivityIndicatorView;
 		};
 		DCEE366429FAF6ED001BBCD3 /* NVActivityIndicatorViewExtended */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = DCEE366129FAF6ED001BBCD3 /* XCRemoteSwiftPackageReference "NVActivityIndicatorView.git" */;
+			package = DCEE366129FAF6ED001BBCD3 /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */;
 			productName = NVActivityIndicatorViewExtended;
 		};
 /* End XCSwiftPackageProductDependency section */

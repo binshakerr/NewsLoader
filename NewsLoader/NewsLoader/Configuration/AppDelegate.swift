@@ -5,15 +5,12 @@
 //  Created by Eslam Shaker on 27/04/2023.
 //
 
-import UIKit
-import IQKeyboardManagerSwift
+import SwiftUI
 
-@main
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: NSObject, UIApplicationDelegate, ObservableObject {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        IQKeyboardManager.shared.enable = true
         NetworkReachability.shared.startNetworkMonitoring()
         return true
     }

@@ -7,6 +7,7 @@
 
 import UIKit
 import Combine
+import SwiftUI
 
 final class NewsDetailsViewController: UIViewController {
     
@@ -75,5 +76,26 @@ final class NewsDetailsViewController: UIViewController {
         if let url = news.fullURL {
             UIApplication.shared.open(url)
         }
+    }
+}
+
+
+struct NewsDetailsViewControllerWrapper: UIViewControllerRepresentable {
+    
+    typealias UIViewControllerType = NewsDetailsViewController
+    private var news: News
+    
+    init(news: News) {
+        self.news = news
+    }
+    
+    func makeUIViewController(context: Context) -> NewsDetailsViewController {
+        let viewModel = NewsDetailsViewModel(news: news)
+        let controller = NewsDetailsViewController(viewModel: viewModel)
+        return controller
+    }
+    
+    func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
+        
     }
 }

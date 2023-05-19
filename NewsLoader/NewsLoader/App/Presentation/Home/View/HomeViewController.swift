@@ -7,13 +7,13 @@
 
 import UIKit
 import Combine
+import SwiftUI
 
 final class HomeViewController: UIViewController {
     
     //MARK: - Properties
     private let viewModel: any HomeViewModelType
     private var cancellables = Set<AnyCancellable>()
-    private let coordinator: HomeCoordinator
     
     lazy var tableView: UITableView = {
         let table = UITableView()
@@ -32,9 +32,8 @@ final class HomeViewController: UIViewController {
     }()
     
     //MARK: - Life cycle
-    init(viewModel: any HomeViewModelType, coordinator: HomeCoordinator) {
+    init(viewModel: any HomeViewModelType) {
         self.viewModel = viewModel
-        self.coordinator = coordinator
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -120,6 +119,25 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        coordinator.showNewsDetailsFor(viewModel.output.data.value[indexPath.row])
+        let news = viewModel.output.data.value[indexPath.row]
+        let viewModel = NewsDetailsViewModel(news: news)
+        let controller = NewsDetailsViewControllerWrapper.UIViewControllerType(viewModel: viewModel)
+        navigationController?.pushViewController(controller, animated: true)
+    }
+}
+
+
+
+struct HomeViewControllerWrapper: UIViewControllerRepresentable {
+    
+    func makeUIViewController(context: Context) -> some UIViewController {
+        let repository = NewsRepository(networkManager: NetworkManager.shared)
+        let viewModel = HomeViewModel(newsRepository: repository)
+        let controller = HomeViewController(viewModel: viewModel)
+        return controller
+    }
+    
+    func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
+        
     }
 }
