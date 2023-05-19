@@ -7,6 +7,7 @@
 
 import Foundation
 import Alamofire
+import Combine
 
 var customSessionManager: Session = {
     let configuration = URLSessionConfiguration.af.default
@@ -17,7 +18,7 @@ var customSessionManager: Session = {
 }()
 
 protocol NetworkManagerType {
-    func request<T: Decodable>(_ endPoint: EndPoint, type: T.Type) async throws -> T
+    func request<T: Decodable>(_ endPoint: EndPoint, type: T.Type) -> AnyPublisher<T, Error>
 }
 
 final class NetworkManager {
@@ -38,22 +39,30 @@ final class NetworkManager {
 
 extension NetworkManager: NetworkManagerType {
     
-    func request<T: Decodable>(_ endPoint: EndPoint, type: T.Type) async throws -> T {
+    func request<T: Decodable>(_ endPoint: EndPoint, type: T.Type) -> AnyPublisher<T, Error> {
         
-        var urlRequest: URLRequest
-        do {
-            urlRequest = try endPoint.asURLRequest()
-        } catch {
-            throw error
+        return Future<T, Error> { [weak self] promise in
+            
+            guard let self = self else { return }
+            
+            var urlRequest: URLRequest!
+            do {
+                urlRequest = try endPoint.asURLRequest()
+            } catch {
+                promise(.failure(error))
+            }
+            
+            // Check Internet Connection
+            if NetworkReachability.shared.status == .notReachable {
+                promise(.failure(AppError(message: "Please check your internet connectivity")))
+            }
+            
+            // Make Request
+            self.session.request(urlRequest).validate().responseData { data in
+                let result = self.parser.parseData(data, type: T.self)
+                promise(result)
+            }
         }
-        
-        // Check Internet Connection
-        if NetworkReachability.shared.status == .notReachable {
-            throw AppError(message: "Please check your internet connectivity")
-        }
-        
-        // Make Request
-        let task = session.request(urlRequest).validate().serializingData()
-        return try await parser.parseData(task.response, type: T.self)
+        .eraseToAnyPublisher()
     }
 }

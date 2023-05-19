@@ -27,15 +27,6 @@ extension NewsRepository: NewsRepositoryType {
     
     func getMostPopular(period: Int) -> AnyPublisher<NewsContainer, Error> {
         let endpoint = NewsService.mostPopular(period: period)
-        return Future<NewsContainer, Error> { promise in
-            Task {
-                do {
-                    let result = try await self.networkManager.request(endpoint, type: NewsContainer.self)
-                    promise(.success(result))
-                } catch {
-                    promise(.failure(error))
-                }
-            }
-        }.eraseToAnyPublisher()
+        return networkManager.request(endpoint, type: NewsContainer.self)
     }
 }

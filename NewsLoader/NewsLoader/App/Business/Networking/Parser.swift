@@ -7,9 +7,10 @@
 
 import Foundation
 import Alamofire
+import Combine
 
 protocol ParserType {
-    func parseData<T: Decodable>(_ result: DataResponse<Data, AFError>, type: T.Type) async throws -> T
+    func parseData<T: Decodable>(_ result: AFDataResponse<Data>, type: T.Type) -> Result<T, Error>
 }
 
 struct Parser {
@@ -23,28 +24,30 @@ struct Parser {
 
 extension Parser: ParserType {
     
-    func parseData<T: Decodable>(_ response: DataResponse<Data, AFError>, type: T.Type) async throws -> T {
+    func parseData<T: Decodable>(_ response: AFDataResponse<Data>, type: T.Type) -> Result<T, Error> {
+        
         switch response.result {
         case .success:
             guard let data = response.data else {
-                throw AppError(message: "No Data")
+                return .failure(AppError(message: "No Data"))
             }
             do {
-                return try decoder.decode(T.self, from: data)
+                let object = try decoder.decode(T.self, from: data)
+                return .success(object)
             } catch let error {
                 debugPrint(error)
-                throw error
+                return .failure(error)
             }
         case .failure(let error):
             guard let data = response.data else {
-                throw error
+                return .failure(error)
             }
             do {
                 let errorResponse = try decoder.decode(ErrorResponse.self, from: data)
-                throw NetworkError(errorResponse: errorResponse)
+                return .failure(NetworkError(errorResponse: errorResponse))
             } catch let error {
                 debugPrint(error)
-                throw error
+                return .failure(error)
             }
         }
     }
