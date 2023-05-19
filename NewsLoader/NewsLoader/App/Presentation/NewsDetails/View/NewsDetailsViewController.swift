@@ -6,17 +6,17 @@
 //
 
 import UIKit
-import RxSwift
-import RxCocoa
+import Combine
 
 final class NewsDetailsViewController: UIViewController {
     
     //MARK: - Properties
     private let viewModel: any NewsDetailsViewModelType
-    private let disposeBag = DisposeBag()
+    private var cancellables = Set<AnyCancellable>()
     
     lazy var tableView: UITableView = {
         let table = UITableView()
+        table.dataSource = self
         table.register(UINib(nibName: viewModel.output.cellIdentifier, bundle: nil), forCellReuseIdentifier: viewModel.output.cellIdentifier)
         table.rowHeight = UITableView.automaticDimension
         table.estimatedRowHeight = 500
@@ -56,10 +56,26 @@ final class NewsDetailsViewController: UIViewController {
         viewModel
             .output
             .data
-            .drive(tableView.rx.items(cellIdentifier: viewModel.output.cellIdentifier, cellType: NewsDetailsCell.self)) { (_, object, cell) in
-                cell.news = object
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
+                self?.tableView.reloadData()
             }
-            .disposed(by: disposeBag)
+            .store(in: &cancellables)
+    }
+}
+
+
+extension NewsDetailsViewController: UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        viewModel.output.data.value.count
     }
     
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: viewModel.output.cellIdentifier, for: indexPath) as? NewsDetailsCell else {
+            return UITableViewCell()
+        }
+        cell.news = viewModel.output.data.value.first
+        return cell
+    }
 }

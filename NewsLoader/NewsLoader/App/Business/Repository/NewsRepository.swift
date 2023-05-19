@@ -6,10 +6,10 @@
 //
 
 import Foundation
-import RxSwift
+import Combine
 
 protocol NewsRepositoryType {
-    func getMostPopular(period: Int) -> Single<NewsContainer>
+    func getMostPopular(period: Int) -> AnyPublisher<NewsContainer, Error>
 }
 
 
@@ -25,20 +25,17 @@ struct NewsRepository {
 
 extension NewsRepository: NewsRepositoryType {
     
-    func getMostPopular(period: Int) -> Single<NewsContainer> {
+    func getMostPopular(period: Int) -> AnyPublisher<NewsContainer, Error> {
         let endpoint = NewsService.mostPopular(period: period)
-        return Single.create { observer in
-            let task = Task {
+        return Future<NewsContainer, Error> { promise in
+            Task {
                 do {
                     let result = try await self.networkManager.request(endpoint, type: NewsContainer.self)
-                    observer(.success(result))
+                    promise(.success(result))
                 } catch {
-                    observer(.failure(error))
+                    promise(.failure(error))
                 }
             }
-            return Disposables.create {
-                task.cancel()
-            }
-        }
+        }.eraseToAnyPublisher()
     }
 }

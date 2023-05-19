@@ -6,8 +6,7 @@
 //
 
 import Foundation
-import RxSwift
-import RxCocoa
+import Combine
 
 protocol NewsDetailsViewModelType: ViewModelType {
     var input: NewsDetailsViewModel.Input { get }
@@ -26,14 +25,14 @@ struct NewsDetailsViewModel: NewsDetailsViewModelType {
     struct Output {
         let screenTitle: String
         let cellIdentifier: String
-        let data: Driver<[DetailsCellViewModel]>
+        let data: CurrentValueSubject<[DetailsCellViewModel], Never>
     }
     
-    private let dataSubject = BehaviorRelay<[DetailsCellViewModel]>(value: [])
+    private let dataSubject = CurrentValueSubject<[DetailsCellViewModel], Never>([])
    
     init(news: News) {
         self.input = Input(news: news)
-        self.output = Output(screenTitle: "News Details", cellIdentifier: "NewsDetailsCell", data: dataSubject.asDriver())
-        self.dataSubject.accept([DetailsCellViewModel(news: news)])
+        self.output = Output(screenTitle: "News Details", cellIdentifier: "NewsDetailsCell", data: dataSubject)
+        self.dataSubject.send([DetailsCellViewModel(news: news)])
     }
 }

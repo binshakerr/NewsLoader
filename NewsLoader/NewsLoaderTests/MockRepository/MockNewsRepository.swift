@@ -6,18 +6,20 @@
 //
 
 import Foundation
-import RxSwift
+import Combine
 @testable import NewsLoader
 
 struct MockNewsRepository: NewsRepositoryType {
-   
+    
     var newsStubData: NewsContainer?
     
-    func getMostPopular(period: Int) -> Single<NewsContainer> {
-        if let newsItem = newsStubData {
-            return .just(newsItem)
-        }
- 
-        return .error(MockError.noDataFound)
+    func getMostPopular(period: Int) -> AnyPublisher<NewsContainer, Error> {
+        return Future<NewsContainer, Error> { promise in
+            if let newsItem = newsStubData {
+                promise(.success(newsItem))
+            } else {
+                promise(.failure(MockError.noDataFound))
+            }
+        }.eraseToAnyPublisher()
     }
 }

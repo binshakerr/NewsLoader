@@ -6,25 +6,30 @@
 //
 
 import UIKit
-import RxSwift
-import RxCocoa
+import Combine
 
 final class HomeViewController: UIViewController {
     
     //MARK: - Properties
     private let viewModel: any HomeViewModelType
-    private let disposeBag = DisposeBag()
+    private var cancellables = Set<AnyCancellable>()
     private let coordinator: HomeCoordinator
     
     lazy var tableView: UITableView = {
         let table = UITableView()
+        table.delegate = self
+        table.dataSource = self
         table.register(UINib(nibName: viewModel.output.cellIdentifier, bundle: nil), forCellReuseIdentifier: viewModel.output.cellIdentifier)
         table.rowHeight = UITableView.automaticDimension
         table.estimatedRowHeight = 100
         table.refreshControl = refreshControl
         return table
     }()
-    lazy var refreshControl = UIRefreshControl()
+    lazy var refreshControl: UIRefreshControl = {
+        let refresh = UIRefreshControl()
+        refresh.addTarget(self, action: #selector(refreshData), for: .valueChanged)
+        return refresh
+    }()
     
     //MARK: - Life cycle
     init(viewModel: any HomeViewModelType, coordinator: HomeCoordinator) {
@@ -40,9 +45,8 @@ final class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        bindInputs()
         bindOutputs()
-        viewModel.input.load.onNext(())
+        viewModel.input.load.send()
     }
     
     deinit {
@@ -63,51 +67,59 @@ final class HomeViewController: UIViewController {
         viewModel
             .output
             .state
-            .drive { [weak self] state in
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] state in
                 guard let self = self, let state = state else { return }
                 state == .loading ? self.startLoading() : self.stopLoading()
                 if state != .loading {
                     self.refreshControl.endRefreshing()
                 }
             }
-            .disposed(by: disposeBag)
+            .store(in: &cancellables)
         
         viewModel
             .output
             .error
-            .drive { [weak self] message in
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] message in
                 guard let self = self, let message = message else { return }
                 self.alertError(message: message)
             }
-            .disposed(by: disposeBag)
+            .store(in: &cancellables)
         
         viewModel
             .output
             .data
-            .drive(tableView
-                .rx
-                .items(cellIdentifier: viewModel.output.cellIdentifier, cellType: NewsCell.self)) { (_, object, cell) in
-                    cell.news = NewsCellViewModel(news: object)
-                }
-                .disposed(by: disposeBag)
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
+                self?.tableView.reloadData()
+            }
+            .store(in: &cancellables)
     }
     
-    private func bindInputs() {
-        tableView
-            .rx
-            .modelSelected(News.self)
-            .subscribe { [weak self] news in
-                self?.coordinator.showNewsDetailsFor(news)
-            }
-            .disposed(by: disposeBag)
-        
-        refreshControl
-            .rx
-            .controlEvent(.valueChanged)
-            .subscribe { [weak self] _ in
-                self?.viewModel.input.reload.onNext(())
-            }
-            .disposed(by: disposeBag)
+    @objc
+    private func refreshData() {
+        viewModel.input.reload.send()
     }
     
+}
+
+
+extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        viewModel.output.data.value.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: viewModel.output.cellIdentifier, for: indexPath) as? NewsCell else {
+            return UITableViewCell()
+        }
+        cell.news = NewsCellViewModel(news: viewModel.output.data.value[indexPath.row])
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        coordinator.showNewsDetailsFor(viewModel.output.data.value[indexPath.row])
+    }
 }
