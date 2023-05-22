@@ -147,6 +147,14 @@
 			path = MockRepository;
 			sourceTree = "<group>";
 		};
+		DC9A33D22A1B67080044BA8A /* Infrastructure */ = {
+			isa = PBXGroup;
+			children = (
+				DCEE368629FB0076001BBCD3 /* Networking */,
+			);
+			path = Infrastructure;
+			sourceTree = "<group>";
+		};
 		DCEE35F129FAF128001BBCD3 = {
 			isa = PBXGroup;
 			children = (
@@ -170,6 +178,7 @@
 			children = (
 				DCEE362D29FAF1D8001BBCD3 /* App */,
 				DCEE362E29FAF1E8001BBCD3 /* Configuration */,
+				DC9A33D22A1B67080044BA8A /* Infrastructure */,
 				DCEE363029FAF205001BBCD3 /* Resources */,
 				DCEE362F29FAF1F4001BBCD3 /* Shared */,
 			);
@@ -191,7 +200,7 @@
 			isa = PBXGroup;
 			children = (
 				DCEE367129FAF8B9001BBCD3 /* Domain */,
-				DCEE367029FAF8B0001BBCD3 /* Business */,
+				DCEE367029FAF8B0001BBCD3 /* Data */,
 				DCEE366F29FAF78B001BBCD3 /* Presentation */,
 			);
 			path = App;
@@ -285,21 +294,20 @@
 			path = Presentation;
 			sourceTree = "<group>";
 		};
-		DCEE367029FAF8B0001BBCD3 /* Business */ = {
+		DCEE367029FAF8B0001BBCD3 /* Data */ = {
 			isa = PBXGroup;
 			children = (
 				DCEE368829FB0091001BBCD3 /* Repository */,
 				DCEE368729FB007F001BBCD3 /* Services */,
-				DCEE368629FB0076001BBCD3 /* Networking */,
-				DCEE368529FB006E001BBCD3 /* Errors */,
 			);
-			path = Business;
+			path = Data;
 			sourceTree = "<group>";
 		};
 		DCEE367129FAF8B9001BBCD3 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
 				DCEE367229FAFB8B001BBCD3 /* Entities */,
+				DCEE368529FB006E001BBCD3 /* Errors */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
