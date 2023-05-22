@@ -14,9 +14,14 @@ struct NewsLoaderApp: App {
     
     var body: some Scene {
         WindowGroup {
-            NavigationView {
-                HomeView()
-            }
+            createHomeView()
         }
+    }
+    
+    private func createHomeView() -> some View {
+        let repository = NewsRepository(networkManager: NetworkManager.shared)
+        let useCase = GetNewsUseCase(repository: repository)
+        let viewModel = HomeViewModel(getNewsUseCase: useCase)
+        return NewsListView(viewModel: viewModel)
     }
 }

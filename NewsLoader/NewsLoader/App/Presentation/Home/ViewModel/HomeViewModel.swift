@@ -13,7 +13,7 @@ protocol HomeViewModelType: ViewModelType {
     var output: HomeViewModel.Output { get }
 }
 
-final class HomeViewModel: HomeViewModelType {
+final class HomeViewModel: HomeViewModelType, ObservableObject {
     
     var input: Input
     var output: Output
@@ -24,9 +24,6 @@ final class HomeViewModel: HomeViewModelType {
     }
     
     struct Output {
-        let data: CurrentValueSubject<[News], Never>
-        let state: CurrentValueSubject<DataState?, Never>
-        let error: CurrentValueSubject<String?, Never>
         let screenTitle: String
         let cellIdentifier: String
     }
@@ -34,9 +31,15 @@ final class HomeViewModel: HomeViewModelType {
     //MARK: -
     private let getNewsUseCase: GetNewsUseCaseType
     private var cancellables = Set<AnyCancellable>()
+    
     private let dataSubject = CurrentValueSubject<[News], Never>([])
     private let stateSubject = CurrentValueSubject<DataState?, Never>(nil)
     private let errorSubject = CurrentValueSubject<String?, Never>(nil)
+    
+    @Published private(set) var data: [NewsCellViewModel] = []
+    @Published private(set) var state: DataState?
+    @Published private(set) var error: String?
+    
     private let loadMostPopularSubject = PassthroughSubject<Void, Never>()
     private let reloadSubject = PassthroughSubject<Void, Never>()
     private let period = 7
@@ -44,8 +47,9 @@ final class HomeViewModel: HomeViewModelType {
     init(getNewsUseCase: GetNewsUseCaseType) {
         self.getNewsUseCase = getNewsUseCase
         self.input = Input(load: loadMostPopularSubject, reload: reloadSubject)
-        self.output = Output(data: dataSubject, state: stateSubject, error: errorSubject, screenTitle: "Most Popular News", cellIdentifier: "NewsCell")
+        self.output = Output(screenTitle: "Most Popular News", cellIdentifier: "NewsCell")
         bindInputs()
+        assignOutputs()
     }
     
     private func bindInputs() {
@@ -56,6 +60,15 @@ final class HomeViewModel: HomeViewModelType {
         reloadSubject.sink { [weak self] in
             self?.refreshContent()
         }.store(in: &cancellables)
+    }
+    
+    private func assignOutputs() {
+        dataSubject.map {
+            $0.map { NewsCellViewModel(news: $0) }
+        }
+        .assign(to: &$data)
+        stateSubject.map { $0 }.assign(to: &$state)
+        errorSubject.map { $0 }.assign(to: &$error)
     }
     
     private func fetchMostPopularNews() {
@@ -71,7 +84,7 @@ final class HomeViewModel: HomeViewModelType {
                     self.errorSubject.send(error.localizedDescription)
                 case .finished:
                     self.stateSubject.send(news.count > 0 ? .populated : .empty)
-                    self.dataSubject.send(self.dataSubject.value + news)
+                    self.dataSubject.send(self.dataSubject.value + news.sorted { $0.publishedDate ?? "" > $1.publishedDate ?? "" } )
                 }
             }, receiveValue: { fetchedNews in
                 news += fetchedNews.results ?? []

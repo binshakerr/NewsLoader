@@ -7,8 +7,9 @@
 
 import Foundation
 
-struct NewsCellViewModel {
+struct NewsCellViewModel: Hashable, Identifiable {
     
+    let id = UUID()
     var title: String
     var author: String
     var date: String
