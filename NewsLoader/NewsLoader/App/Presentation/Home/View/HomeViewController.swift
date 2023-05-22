@@ -132,7 +132,8 @@ struct HomeViewControllerWrapper: UIViewControllerRepresentable {
     
     func makeUIViewController(context: Context) -> some UIViewController {
         let repository = NewsRepository(networkManager: NetworkManager.shared)
-        let viewModel = HomeViewModel(newsRepository: repository)
+        let useCase = GetNewsUseCase(repository: repository)
+        let viewModel = HomeViewModel(getNewsUseCase: useCase)
         let controller = HomeViewController(viewModel: viewModel)
         return controller
     }

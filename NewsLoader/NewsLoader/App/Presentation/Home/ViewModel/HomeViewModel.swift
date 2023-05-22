@@ -32,7 +32,7 @@ final class HomeViewModel: HomeViewModelType {
     }
     
     //MARK: -
-    private let newsRepository: NewsRepositoryType
+    private let getNewsUseCase: GetNewsUseCaseType
     private var cancellables = Set<AnyCancellable>()
     private let dataSubject = CurrentValueSubject<[News], Never>([])
     private let stateSubject = CurrentValueSubject<DataState?, Never>(nil)
@@ -41,8 +41,8 @@ final class HomeViewModel: HomeViewModelType {
     private let reloadSubject = PassthroughSubject<Void, Never>()
     private let period = 7
     
-    init(newsRepository: NewsRepositoryType) {
-        self.newsRepository = newsRepository
+    init(getNewsUseCase: GetNewsUseCaseType) {
+        self.getNewsUseCase = getNewsUseCase
         self.input = Input(load: loadMostPopularSubject, reload: reloadSubject)
         self.output = Output(data: dataSubject, state: stateSubject, error: errorSubject, screenTitle: "Most Popular News", cellIdentifier: "NewsCell")
         bindInputs()
@@ -61,7 +61,7 @@ final class HomeViewModel: HomeViewModelType {
     private func fetchMostPopularNews() {
         stateSubject.send(.loading)
         var news = [News]()
-        newsRepository
+        getNewsUseCase
             .getMostPopular(period: period)
             .sink(receiveCompletion: { [weak self] status in
                 guard let self = self else { return }
