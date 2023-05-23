@@ -25,7 +25,6 @@ final class HomeViewModel: HomeViewModelType, ObservableObject {
     
     struct Output {
         let screenTitle: String
-        let cellIdentifier: String
     }
     
     //MARK: -
@@ -43,11 +42,12 @@ final class HomeViewModel: HomeViewModelType, ObservableObject {
     private let loadMostPopularSubject = PassthroughSubject<Void, Never>()
     private let reloadSubject = PassthroughSubject<Void, Never>()
     private let period = 7
+    private var news = [News]()
     
     init(getNewsUseCase: GetNewsUseCaseType) {
         self.getNewsUseCase = getNewsUseCase
         self.input = Input(load: loadMostPopularSubject, reload: reloadSubject)
-        self.output = Output(screenTitle: "Most Popular News", cellIdentifier: "NewsCell")
+        self.output = Output(screenTitle: "Most Popular News")
         bindInputs()
         assignOutputs()
     }
@@ -73,7 +73,6 @@ final class HomeViewModel: HomeViewModelType, ObservableObject {
     
     private func fetchMostPopularNews() {
         stateSubject.send(.loading)
-        var news = [News]()
         getNewsUseCase
             .getMostPopular(period: period)
             .sink(receiveCompletion: { [weak self] status in
@@ -86,8 +85,8 @@ final class HomeViewModel: HomeViewModelType, ObservableObject {
                     self.stateSubject.send(news.count > 0 ? .populated : .empty)
                     self.dataSubject.send(self.dataSubject.value + news.sorted { $0.publishedDate ?? "" > $1.publishedDate ?? "" } )
                 }
-            }, receiveValue: { fetchedNews in
-                news += fetchedNews.results ?? []
+            }, receiveValue: { [weak self] fetchedNews in
+                self?.news += fetchedNews.results ?? []
             })
             .store(in: &cancellables)
     }
@@ -96,5 +95,9 @@ final class HomeViewModel: HomeViewModelType, ObservableObject {
         stateSubject.send(nil)
         dataSubject.send([])
         loadMostPopularSubject.send()
+    }
+    
+    func getNewsAtId(_ id: Int) -> News? {
+        return news.first { $0.id == id }
     }
 }

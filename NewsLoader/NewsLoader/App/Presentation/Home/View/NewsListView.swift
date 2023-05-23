@@ -17,18 +17,24 @@ struct NewsListView: View {
             ScrollView {
                 LazyVGrid(columns: columns, spacing: 10) {
                     ForEach(viewModel.data, id: \.self) { item in
-                        NewsListCell(news: item)
+                        NavigationLink(destination: createDetailsView(id: item.id)) {
+                            NewsListCell(news: item)
+                        }
                     }
                 }
-                .padding(.horizontal)
+                .padding()
             }
-            .frame(maxHeight: .infinity)
-            .onAppear {
+            .onLoad {
                 viewModel.input.load.send()
             }
             .navigationTitle(viewModel.output.screenTitle)
-            .navigationBarTitleDisplayMode(.inline)
         }
+    }
+    
+    private func createDetailsView(id: Int) -> AnyView {
+        guard let news = viewModel.getNewsAtId(id) else { return AnyView(EmptyView()) }
+        let viewModel = NewsDetailsViewModel(news: news)
+        return AnyView(NewsDetailsView(viewModel: viewModel))
     }
 }
 

@@ -13,7 +13,7 @@ protocol NewsDetailsViewModelType: ViewModelType {
     var output: NewsDetailsViewModel.Output { get }
 }
 
-struct NewsDetailsViewModel: NewsDetailsViewModelType {
+final class NewsDetailsViewModel: NewsDetailsViewModelType, ObservableObject {
     
     var input: Input
     var output: Output
@@ -21,18 +21,18 @@ struct NewsDetailsViewModel: NewsDetailsViewModelType {
     struct Input {
         let news: News
     }
-
+    
     struct Output {
         let screenTitle: String
-        let cellIdentifier: String
-        let data: CurrentValueSubject<[DetailsCellViewModel], Never>
     }
     
     private let dataSubject = CurrentValueSubject<[DetailsCellViewModel], Never>([])
-   
+    @Published private(set) var data: DetailsCellViewModel!
+    
     init(news: News) {
         self.input = Input(news: news)
-        self.output = Output(screenTitle: "News Details", cellIdentifier: "NewsDetailsCell", data: dataSubject)
+        self.output = Output(screenTitle: "News Details")
         self.dataSubject.send([DetailsCellViewModel(news: news)])
+        self.dataSubject.map { $0[0] }.assign(to: &$data)
     }
 }

@@ -26,17 +26,19 @@ struct NewsListCell: View {
                     Text(news.title)
                         .font(.custom("Avenir Next", size: 16))
                         .fontWeight(.bold)
+                        .foregroundColor(Color.primary)
                         .multilineTextAlignment(.leading)
                     
                     Text(news.author)
                         .font(.custom("Avenir Next", size: 14))
                         .fontWeight(.regular)
+                        .foregroundColor(Color.primary)
                         .multilineTextAlignment(.leading)
                     
                     Text(news.date)
                         .font(.custom("Avenir Next", size: 12))
                         .fontWeight(.regular)
-                        .foregroundColor(Color.gray)
+                        .foregroundColor(Color.secondary)
                 }
             }
             

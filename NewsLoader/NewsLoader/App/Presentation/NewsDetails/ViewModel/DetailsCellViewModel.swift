@@ -7,7 +7,9 @@
 
 import Foundation
 
-struct DetailsCellViewModel {
+struct DetailsCellViewModel: Hashable, Identifiable {
+    
+    let id: Int
     var title: String
     var author: String
     var date: String
@@ -16,6 +18,7 @@ struct DetailsCellViewModel {
     var fullURL: URL?
     
     init(news: News) {
+        self.id = news.id ?? 0
         self.title = news.title ?? ""
         self.author = news.byline ?? ""
         self.date = news.publishedDate ?? ""
