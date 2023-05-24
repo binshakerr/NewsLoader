@@ -10,7 +10,8 @@ import SwiftUI
 struct NewsListView: View {
     
     @ObservedObject var viewModel: HomeViewModel
-    let columns = [GridItem(.flexible())]
+    @State private var showErrorAlert = false
+    private let columns = [GridItem(.flexible())]
     
     var body: some View {
         NavigationView {
@@ -27,7 +28,15 @@ struct NewsListView: View {
             .onLoad {
                 viewModel.input.load.send()
             }
+            .onReceive(viewModel.$error) { error in
+                showErrorAlert = error != nil
+            }
             .navigationTitle(viewModel.output.screenTitle)
+        }
+        .alert(isPresented: $showErrorAlert) {
+            Alert(title: Text("Error"),
+                  message: Text(viewModel.error?.localizedDescription ?? ""),
+                  dismissButton: .default(Text("OK")))
         }
     }
     
