@@ -7,10 +7,13 @@
 
 import SwiftUI
 
-
 extension View {
     
     func onLoad(perform action: (() -> Void)? = nil) -> some View {
         modifier(ViewDidLoadModifier(perform: action))
+    }
+    
+    func onRefresh(isRefreshing: Bool, perform action: @escaping (() -> Void)) -> some View {
+        modifier(RefreshableScrollViewModifier(isRefreshing: isRefreshing, action: action))
     }
 }

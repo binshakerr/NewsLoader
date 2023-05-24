@@ -11,27 +11,36 @@ struct NewsListView: View {
     
     @ObservedObject var viewModel: HomeViewModel
     @State private var showErrorAlert = false
+    @State private var isLoading = false
     private let columns = [GridItem(.flexible())]
     
     var body: some View {
         NavigationView {
-            ScrollView {
-                LazyVGrid(columns: columns, spacing: 10) {
-                    ForEach(viewModel.data, id: \.self) { item in
-                        NavigationLink(destination: createDetailsView(id: item.id)) {
-                            NewsListCell(news: item)
+            ZStack {
+                if isLoading {
+                    Spinner()
+                }
+                ScrollView {
+                    LazyVGrid(columns: columns, spacing: 10) {
+                        ForEach(viewModel.data, id: \.self) { item in
+                            NavigationLink(destination: createDetailsView(id: item.id)) {
+                                NewsListCell(news: item)
+                            }
                         }
                     }
+                    .padding()
                 }
-                .padding()
+                .onLoad {
+                    viewModel.input.load.send()
+                }
+                .onReceive(viewModel.$state) { state in
+                    isLoading = state == .loading
+                }
+                .onReceive(viewModel.$error) { error in
+                    showErrorAlert = error != nil
+                }
+                .navigationTitle(viewModel.output.screenTitle)
             }
-            .onLoad {
-                viewModel.input.load.send()
-            }
-            .onReceive(viewModel.$error) { error in
-                showErrorAlert = error != nil
-            }
-            .navigationTitle(viewModel.output.screenTitle)
         }
         .alert(isPresented: $showErrorAlert) {
             Alert(title: Text("Error"),
