@@ -26,7 +26,8 @@ class HomeCoordinator: Coordinator {
     
     func makeHomeScreen() -> UIViewController {
         let repository = NewsRepository(networkManager: NetworkManager.shared)
-        let viewModel = HomeViewModel(newsRepository: repository)
+        let usecase = GetNewsUseCase(repository: repository)
+        let viewModel = HomeViewModel(usecase: usecase)
         let controller = HomeViewController(viewModel: viewModel, coordinator: self)
         return controller
     }

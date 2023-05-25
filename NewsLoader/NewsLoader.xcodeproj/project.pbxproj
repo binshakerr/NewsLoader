@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		744F4760E630BD5788DDCF62 /* Pods_NewsLoader.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DD65D6720103775CFB403F6 /* Pods_NewsLoader.framework */; };
 		DC4B31C82A0264EC00CB924A /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC4B31C72A0264EC00CB924A /* ViewModelType.swift */; };
+		DC51A46F2A1F3F0C00866046 /* GetNewsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC51A46E2A1F3F0C00866046 /* GetNewsUseCase.swift */; };
 		DC97CB8829FC38D300D46059 /* MockNewsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC97CB8729FC38D300D46059 /* MockNewsRepository.swift */; };
 		DC97CB8A29FC398800D46059 /* MockError.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC97CB8929FC398800D46059 /* MockError.swift */; };
 		DCE35D9E2A17F3790093B80E /* NewsDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DCE35D9D2A17F3790093B80E /* NewsDetailsViewController.xib */; };
@@ -29,7 +30,6 @@
 		DCEE364E29FAF568001BBCD3 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEE364D29FAF568001BBCD3 /* HomeViewModel.swift */; };
 		DCEE365129FAF5CD001BBCD3 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = DCEE365029FAF5CD001BBCD3 /* Kingfisher */; };
 		DCEE365429FAF5DB001BBCD3 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = DCEE365329FAF5DB001BBCD3 /* Alamofire */; };
-		DCEE365729FAF606001BBCD3 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = DCEE365629FAF606001BBCD3 /* IQKeyboardManagerSwift */; };
 		DCEE366329FAF6ED001BBCD3 /* NVActivityIndicatorView in Frameworks */ = {isa = PBXBuildFile; productRef = DCEE366229FAF6ED001BBCD3 /* NVActivityIndicatorView */; };
 		DCEE366529FAF6ED001BBCD3 /* NVActivityIndicatorViewExtended in Frameworks */ = {isa = PBXBuildFile; productRef = DCEE366429FAF6ED001BBCD3 /* NVActivityIndicatorViewExtended */; };
 		DCEE367429FAFBB6001BBCD3 /* NewsContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEE367329FAFBB6001BBCD3 /* NewsContainer.swift */; };
@@ -78,6 +78,7 @@
 		BCB1E4CC1FC0D325425D851D /* Pods-NewsLoader.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NewsLoader.debug.xcconfig"; path = "Target Support Files/Pods-NewsLoader/Pods-NewsLoader.debug.xcconfig"; sourceTree = "<group>"; };
 		D575221B12F962CF8F0A763D /* Pods-NewsLoaderTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NewsLoaderTests.debug.xcconfig"; path = "Target Support Files/Pods-NewsLoaderTests/Pods-NewsLoaderTests.debug.xcconfig"; sourceTree = "<group>"; };
 		DC4B31C72A0264EC00CB924A /* ViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
+		DC51A46E2A1F3F0C00866046 /* GetNewsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetNewsUseCase.swift; sourceTree = "<group>"; };
 		DC97CB8729FC38D300D46059 /* MockNewsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNewsRepository.swift; sourceTree = "<group>"; };
 		DC97CB8929FC398800D46059 /* MockError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockError.swift; sourceTree = "<group>"; };
 		DCE35D9D2A17F3790093B80E /* NewsDetailsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewsDetailsViewController.xib; sourceTree = "<group>"; };
@@ -137,7 +138,6 @@
 				DCEE366329FAF6ED001BBCD3 /* NVActivityIndicatorView in Frameworks */,
 				DCEE365129FAF5CD001BBCD3 /* Kingfisher in Frameworks */,
 				DCEE365429FAF5DB001BBCD3 /* Alamofire in Frameworks */,
-				DCEE365729FAF606001BBCD3 /* IQKeyboardManagerSwift in Frameworks */,
 				744F4760E630BD5788DDCF62 /* Pods_NewsLoader.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -160,6 +160,22 @@
 				80DCC91B73B0AA9F85A44228 /* Pods_NewsLoaderTests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DC51A46C2A1F3E8500866046 /* Infrastructure */ = {
+			isa = PBXGroup;
+			children = (
+				DCEE368629FB0076001BBCD3 /* Networking */,
+			);
+			path = Infrastructure;
+			sourceTree = "<group>";
+		};
+		DC51A46D2A1F3EF500866046 /* Usecases */ = {
+			isa = PBXGroup;
+			children = (
+				DC51A46E2A1F3F0C00866046 /* GetNewsUseCase.swift */,
+			);
+			path = Usecases;
 			sourceTree = "<group>";
 		};
 		DC97CB8629FC38BC00D46059 /* MockRepository */ = {
@@ -195,6 +211,7 @@
 			children = (
 				DCEE362D29FAF1D8001BBCD3 /* App */,
 				DCEE362E29FAF1E8001BBCD3 /* Configuration */,
+				DC51A46C2A1F3E8500866046 /* Infrastructure */,
 				DCEE363029FAF205001BBCD3 /* Resources */,
 				DCEE362F29FAF1F4001BBCD3 /* Shared */,
 			);
@@ -216,7 +233,7 @@
 			isa = PBXGroup;
 			children = (
 				DCEE367129FAF8B9001BBCD3 /* Domain */,
-				DCEE367029FAF8B0001BBCD3 /* Business */,
+				DCEE367029FAF8B0001BBCD3 /* Data */,
 				DCEE366F29FAF78B001BBCD3 /* Presentation */,
 			);
 			path = App;
@@ -225,10 +242,10 @@
 		DCEE362E29FAF1E8001BBCD3 /* Configuration */ = {
 			isa = PBXGroup;
 			children = (
-				DCEE35FD29FAF128001BBCD3 /* AppDelegate.swift */,
-				DCEE35FF29FAF128001BBCD3 /* SceneDelegate.swift */,
 				DCEE363829FAF38A001BBCD3 /* AppCoordinator.swift */,
+				DCEE35FD29FAF128001BBCD3 /* AppDelegate.swift */,
 				DCEE360B29FAF129001BBCD3 /* Info.plist */,
+				DCEE35FF29FAF128001BBCD3 /* SceneDelegate.swift */,
 			);
 			path = Configuration;
 			sourceTree = "<group>";
@@ -313,27 +330,27 @@
 		DCEE366F29FAF78B001BBCD3 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
-				DCEE36A729FB2EAF001BBCD3 /* NewsDetails */,
 				DCEE363129FAF255001BBCD3 /* Home */,
+				DCEE36A729FB2EAF001BBCD3 /* NewsDetails */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
 		};
-		DCEE367029FAF8B0001BBCD3 /* Business */ = {
+		DCEE367029FAF8B0001BBCD3 /* Data */ = {
 			isa = PBXGroup;
 			children = (
 				DCEE368829FB0091001BBCD3 /* Repository */,
 				DCEE368729FB007F001BBCD3 /* Services */,
-				DCEE368629FB0076001BBCD3 /* Networking */,
-				DCEE368529FB006E001BBCD3 /* Errors */,
 			);
-			path = Business;
+			path = Data;
 			sourceTree = "<group>";
 		};
 		DCEE367129FAF8B9001BBCD3 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				DC51A46D2A1F3EF500866046 /* Usecases */,
 				DCEE367229FAFB8B001BBCD3 /* Entities */,
+				DCEE368529FB006E001BBCD3 /* Errors */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -466,7 +483,6 @@
 			packageProductDependencies = (
 				DCEE365029FAF5CD001BBCD3 /* Kingfisher */,
 				DCEE365329FAF5DB001BBCD3 /* Alamofire */,
-				DCEE365629FAF606001BBCD3 /* IQKeyboardManagerSwift */,
 				DCEE366229FAF6ED001BBCD3 /* NVActivityIndicatorView */,
 				DCEE366429FAF6ED001BBCD3 /* NVActivityIndicatorViewExtended */,
 			);
@@ -525,7 +541,6 @@
 			packageReferences = (
 				DCEE364F29FAF5CD001BBCD3 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				DCEE365229FAF5DB001BBCD3 /* XCRemoteSwiftPackageReference "Alamofire" */,
-				DCEE365529FAF606001BBCD3 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
 				DCEE366129FAF6ED001BBCD3 /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */,
 			);
 			productRefGroup = DCEE35FB29FAF128001BBCD3 /* Products */;
@@ -671,6 +686,7 @@
 				DCEE369329FB00B2001BBCD3 /* Enums.swift in Sources */,
 				DCEE369E29FB02B1001BBCD3 /* NewsRepository.swift in Sources */,
 				DCEE360029FAF128001BBCD3 /* SceneDelegate.swift in Sources */,
+				DC51A46F2A1F3F0C00866046 /* GetNewsUseCase.swift in Sources */,
 				DCEE367A29FAFC84001BBCD3 /* MediaMetadata.swift in Sources */,
 				DCEE36A329FB1C5A001BBCD3 /* NewsCell.swift in Sources */,
 				DCEE364629FAF511001BBCD3 /* UIView+Extensions.swift in Sources */,
@@ -991,15 +1007,6 @@
 				minimumVersion = 5.0.0;
 			};
 		};
-		DCEE365529FAF606001BBCD3 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/hackiftekhar/IQKeyboardManager.git";
-			requirement = {
-				kind = versionRange;
-				maximumVersion = 7.0.0;
-				minimumVersion = 6.0.0;
-			};
-		};
 		DCEE366129FAF6ED001BBCD3 /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ninjaprox/NVActivityIndicatorView.git";
@@ -1020,11 +1027,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = DCEE365229FAF5DB001BBCD3 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
-		};
-		DCEE365629FAF606001BBCD3 /* IQKeyboardManagerSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = DCEE365529FAF606001BBCD3 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
-			productName = IQKeyboardManagerSwift;
 		};
 		DCEE366229FAF6ED001BBCD3 /* NVActivityIndicatorView */ = {
 			isa = XCSwiftPackageProductDependency;

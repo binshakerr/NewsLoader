@@ -19,7 +19,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="L6A-hY-PyC">
-                        <rect key="frame" x="10" y="54.666666666666657" width="45" height="45"/>
+                        <rect key="frame" x="10" y="10" width="45" height="45"/>
                         <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="L6A-hY-PyC" secondAttribute="height" multiplier="1:1" id="9Kq-Qr-WMy"/>
@@ -51,11 +51,11 @@
                     </stackView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="L6A-hY-PyC" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="B4k-bz-wD5"/>
                     <constraint firstItem="YTI-zI-i55" firstAttribute="leading" secondItem="L6A-hY-PyC" secondAttribute="trailing" constant="10" id="BCE-4i-egH"/>
                     <constraint firstAttribute="trailing" secondItem="YTI-zI-i55" secondAttribute="trailing" constant="10" id="Qej-td-VeV"/>
                     <constraint firstItem="L6A-hY-PyC" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="Wfu-J8-1KF"/>
                     <constraint firstItem="YTI-zI-i55" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="bZn-Ii-W8G"/>
+                    <constraint firstItem="L6A-hY-PyC" firstAttribute="top" secondItem="YTI-zI-i55" secondAttribute="top" id="xiN-3i-mYT"/>
                     <constraint firstAttribute="bottom" secondItem="YTI-zI-i55" secondAttribute="bottom" constant="10" id="ybW-qK-Kff"/>
                 </constraints>
             </tableViewCellContentView>

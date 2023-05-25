@@ -75,9 +75,9 @@ final class HomeViewController: UIViewController {
         viewModel
             .output
             .error
-            .drive { [weak self] message in
-                guard let self = self, let message = message else { return }
-                self.alertError(message: message)
+            .drive { [weak self] error in
+                guard let self = self, let error = error else { return }
+                self.alertError(message: error.localizedDescription)
             }
             .disposed(by: disposeBag)
         

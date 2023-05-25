@@ -27,23 +27,23 @@ struct HomeViewModel: HomeViewModelType {
     struct Output {
         let data: Driver<[News]>
         let state: Driver<DataState?>
-        let error: Driver<String?>
+        let error: Driver<Error?>
         let screenTitle: String
         let cellIdentifier: String
     }
     
     //MARK: -
-    private let newsRepository: NewsRepositoryType
+    private let usecase: GetNewsUseCaseType
     private let disposeBag = DisposeBag()
     private let dataSubject = BehaviorRelay<[News]>(value: [])
     private let stateSubject = BehaviorRelay<DataState?>(value: nil)
-    private let errorSubject = BehaviorRelay<String?>(value: nil)
+    private let errorSubject = BehaviorRelay<Error?>(value: nil)
     private let loadMostPopularSubject = PublishSubject<Void>()
     private let reloadSubject = PublishSubject<Void>()
     private let period = 7
     
-    init(newsRepository: NewsRepositoryType) {
-        self.newsRepository = newsRepository
+    init(usecase: GetNewsUseCaseType) {
+        self.usecase = usecase
         self.input = Input(load: loadMostPopularSubject.asObserver(), reload: reloadSubject.asObserver())
         self.output = Output(data: dataSubject.asDriver(), state: stateSubject.asDriver(), error: errorSubject.asDriver(), screenTitle: "Most Popular News", cellIdentifier: "NewsCell")
         bindInputs()
@@ -61,12 +61,12 @@ struct HomeViewModel: HomeViewModelType {
     
     private func fetchMostPopularNews() {
         stateSubject.accept(.loading)
-        newsRepository.getMostPopular(period: period).subscribe(onNext: { news in
+        usecase.getMostPopular(period: period).subscribe(onNext: { news in
             stateSubject.accept(news.results?.count ?? 0 > 0 ? .populated : .empty)
             dataSubject.accept(dataSubject.value + (news.results ?? []))
         }, onError: { error in
             stateSubject.accept(.error)
-            errorSubject.accept(error.localizedDescription)
+            errorSubject.accept(error)
         }).disposed(by: disposeBag)
     }
     
