@@ -87,27 +87,32 @@ final class HomeViewController: UIViewController {
             .drive(tableView
                 .rx
                 .items(cellIdentifier: viewModel.output.cellIdentifier, cellType: NewsCell.self)) { (_, object, cell) in
-                    cell.news = NewsCellViewModel(news: object)
+                    cell.news = object
                 }
                 .disposed(by: disposeBag)
+        
+        viewModel
+            .output
+            .indexedNews
+            .drive { [weak self] news in
+                guard let news = news else { return }
+                self?.coordinator.showNewsDetailsFor(news)
+            }
+            .disposed(by: disposeBag)
     }
     
     private func bindInputs() {
         tableView
             .rx
-            .modelSelected(News.self)
-            .subscribe { [weak self] news in
-                self?.coordinator.showNewsDetailsFor(news)
-            }
+            .itemSelected
+            .map { $0.row }
+            .bind(to: viewModel.input.getNewsAt)
             .disposed(by: disposeBag)
         
         refreshControl
             .rx
             .controlEvent(.valueChanged)
-            .subscribe { [weak self] _ in
-                self?.viewModel.input.reload.onNext(())
-            }
+            .bind(to: viewModel.input.reload)
             .disposed(by: disposeBag)
     }
-    
 }
